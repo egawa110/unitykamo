@@ -6,20 +6,8 @@ using UnityEngine.SceneManagement;
 public class ButtonManager : MonoBehaviour
 {
     public string SceneName;
-    // Start is called before the first frame update
-    void Start()
+    public void ChengeScene() 
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void ChengeScene()
-    {
-        SceneManager.LoadScene(SceneName);
+        SceneManager.LoadScene(SceneName); //ƒV[ƒ“ˆÚ“®
     }
 }
