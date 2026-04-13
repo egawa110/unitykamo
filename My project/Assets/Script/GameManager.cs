@@ -24,9 +24,9 @@ public class GameManager : MonoBehaviour
 
         //ポーズ画面
         if (Input.GetKeyDown(KeyCode.Escape)){
-            Time.timeScale = 0;
             isVisible = !isVisible;
             Pause.SetActive(isVisible);
+            Time.timeScale = 0; //ポーズ画面中は時間停止
         }
         if (!isVisible)
         {
