@@ -29,7 +29,7 @@ public class Ball : MonoBehaviour
     {
         if (reset.Reset){  //リセット
             transform.position = StartPos;      //位置をリセット
-            rb.linearVelocity = Vector3.zero;   //直線の慣性をリセット
+            //rb.linearVelocity = Vector3.zero;   //直線の慣性をリセット
             rb.angularVelocity = Vector3.zero;  //回転の慣性をリセット
 
         }
