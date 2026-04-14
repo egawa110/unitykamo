@@ -9,8 +9,13 @@ public class GameManager : MonoBehaviour
     public GameObject Pause;
     private bool isVisible = false;
     //タイマー
+    public GameObject TimePanel;
     public Text TimeText;
     private float TimeCount;
+    //ゴール時
+    public GameObject GoalPanel;
+    public Text GoalTime;
+    public Goal goal;
     void Start()
     {
         TimeCount = 0f;
@@ -19,8 +24,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //タイマー
-        TimeCount += Time.deltaTime;
-        TimeText.text = TimeCount.ToString("F1");
+        if (!goal.isGoal)
+        {
+            TimeCount += Time.deltaTime;
+            TimeText.text = TimeCount.ToString("F1") + " 秒";
+
+        }
 
         //ポーズ画面
         if (Input.GetKeyDown(KeyCode.Escape)){
@@ -33,5 +42,12 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1;
         }
 
+        //ゴール
+        if (goal.isGoal)
+        {
+            GoalPanel.SetActive(true);
+            TimePanel.SetActive(false);
+            GoalTime.text = "クリアタイム:" + TimeCount.ToString("F1") + " 秒";
+        }
     }
 }

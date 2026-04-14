@@ -21,7 +21,6 @@ public class Ball : MonoBehaviour
         if (other.CompareTag("Goal"))
         {
             goal.isGoal = true;
-            Debug.Log("ゴールに触れた");
         }
     }
 
@@ -29,7 +28,7 @@ public class Ball : MonoBehaviour
     {
         if (reset.Reset){  //リセット
             transform.position = StartPos;      //位置をリセット
-            //rb.linearVelocity = Vector3.zero;   //直線の慣性をリセット
+            rb.velocity        = Vector3.zero;  //直線の慣性をリセット
             rb.angularVelocity = Vector3.zero;  //回転の慣性をリセット
 
         }
