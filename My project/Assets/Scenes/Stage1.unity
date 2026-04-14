@@ -306,7 +306,7 @@ MonoBehaviour:
   Pause: {fileID: 1300536393}
   TimePanel: {fileID: 842465494}
   TimeText: {fileID: 446507942}
-  GoalPanel: {fileID: 0}
+  GoalPanel: {fileID: 907345268}
   GoalTime: {fileID: 1058559493}
   goal: {fileID: 1047093328}
 --- !u!4 &82244206
