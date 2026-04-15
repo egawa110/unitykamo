@@ -6,6 +6,8 @@ public class Move : MonoBehaviour
     private Vector3 m_Rotation;
 
     const float Speed = 0.05f;  //‰ñ“]ƒXƒs[ƒh
+    const float MaxTilt = 20;  //Å‘åŒX‚«
+    const float MinTilt = -20; //Å¬ŒX‚«
     private float x = 0, y = 0, z = 0;
 
     public ResetManager reset;
@@ -28,18 +30,19 @@ public class Move : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.W)){  //‰œ‚ÉŒX‚¯‚é
+        if (Input.GetKey(KeyCode.W) && x < MaxTilt)  //‰œ‚ÉŒX‚¯‚é
+        {
             x += Speed;
         }
-        if (Input.GetKey(KeyCode.S))  //‘O‚ÉŒX‚¯‚é
+        if (Input.GetKey(KeyCode.S) && x > MinTilt)  //‘O‚ÉŒX‚¯‚é
         {
             x -= Speed;
         }
-        if (Input.GetKey(KeyCode.A))  //¶‚ÉŒX‚¯‚é
+        if (Input.GetKey(KeyCode.A) && z < MaxTilt)  //¶‚ÉŒX‚¯‚é
         {
             z += Speed;
         }
-        if (Input.GetKey(KeyCode.D))  //‰E‚ÉŒX‚¯‚é
+        if (Input.GetKey(KeyCode.D) && z > MinTilt)  //‰E‚ÉŒX‚¯‚é
         {
             z -= Speed;
         }
