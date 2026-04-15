@@ -16,12 +16,25 @@ public class Ball : MonoBehaviour
         rb = GetComponent<Rigidbody>(); //BallのRigidbodyを獲得
     }
 
-    private void OnTriggerEnter(Collider other) //Triggerがonになっている物に触れた時
+    void OnTriggerEnter(Collider other) //Triggerがonになっている物に触れた時
     {
-        if (other.CompareTag("Goal"))
+        if (other.CompareTag("Goal")) //Goalタグに触れた時
         {
             goal.isGoal = true;
         }
+        if (other.CompareTag("HalfGoal")) //HalfGoalタグに触れた時
+        {
+            goal.GoalCount++;
+        }
+    }
+
+    void OnTriggerExit(Collider other)　//Triggerがonになっている物から離れた時
+    {
+        if (other.CompareTag("HalfGoal")) //HalfGoalタグを離れた時
+        {
+            goal.GoalCount--;
+        }
+
     }
 
     void Update()
@@ -31,6 +44,10 @@ public class Ball : MonoBehaviour
             rb.velocity        = Vector3.zero;  //直線の慣性をリセット
             rb.angularVelocity = Vector3.zero;  //回転の慣性をリセット
 
+        }
+        if (goal.GoalCount == 2)//HalfGoalタグに２個触れた時
+        {
+            goal.isGoal = true;
         }
     }
 }

@@ -4,22 +4,16 @@ using UnityEngine.UI;
 public class Goal : MonoBehaviour
 {
     public bool isGoal = false;
-    //public GameObject GoalPanel;
+    public int GoalCount;
 
 
     void Start()
     {
-        
+        GoalCount = 0;
     }
 
     void Update()
     {
-        //if (isGoal)
-        //{
-        //    GoalPanel.SetActive(true);
-
-        //}
-
         //デバッグ用
         if (Input.GetKeyDown(KeyCode.G))
         {

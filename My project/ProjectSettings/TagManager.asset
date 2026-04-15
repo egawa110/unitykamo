@@ -7,6 +7,7 @@ TagManager:
   - Goal
   - Switch
   - Ball
+  - HalfGoal
   layers:
   - Default
   - TransparentFX
