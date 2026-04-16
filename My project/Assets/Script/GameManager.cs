@@ -48,17 +48,17 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1;
         }
 
+        //ステージの傾き表示
+        TiltTextX.text = "X:" + move.x.ToString("F1");
+        TiltTextY.text = "Z:" + move.z.ToString("F1");
+
         //ゴール
         if (goal.isGoal)
         {
             GoalPanel.SetActive(true);
             TimePanel.SetActive(false);
+            TiltPanel.SetActive(false);
             GoalTime.text = "クリアタイム:" + TimeCount.ToString("F1") + " 秒";
         }
-
-        //ステージの傾き表示
-        TiltTextX.text = "X:" + move.x.ToString("F1");
-        TiltTextY.text = "Z:" + move.z.ToString("F1");
-
     }
 }
