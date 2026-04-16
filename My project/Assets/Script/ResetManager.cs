@@ -19,6 +19,7 @@ public class ResetManager : MonoBehaviour
             Reset = true;
 
         }
+
         if (Reset)
         {
             second++;
@@ -26,6 +27,7 @@ public class ResetManager : MonoBehaviour
             {
                 second = 0;
                 Reset = false;
+
             }
         }
     }

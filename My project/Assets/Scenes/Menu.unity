@@ -580,7 +580,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sample
+  m_Text: Stage3
 --- !u!222 &1138196399
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1080,7 +1080,7 @@ GameObject:
   - component: {fileID: 1863823052}
   - component: {fileID: 1863823051}
   m_Layer: 5
-  m_Name: Sample
+  m_Name: Stage3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1118,7 +1118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 243542343a4f7a547a49317a4b23d3f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: Sample
+  SceneName: Stage3
 --- !u!114 &1863823052
 MonoBehaviour:
   m_ObjectHideFlags: 0

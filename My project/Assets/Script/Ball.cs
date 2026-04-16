@@ -5,7 +5,7 @@ public class Ball : MonoBehaviour
     private Vector3 StartPos;
     private Rigidbody rb;
     public float Bx = 0, By = 0, Bz = 0; //各ステージで設定出来るようにpbulicにしている
-    
+    const float Gravity = 100f;
     public Goal goal;
     public ResetManager reset;
     void Start()
@@ -14,6 +14,7 @@ public class Ball : MonoBehaviour
         transform.position = StartPos;  //Ballの位置を設定
 
         rb = GetComponent<Rigidbody>(); //BallのRigidbodyを獲得
+        rb.mass = Gravity;
     }
 
     void OnTriggerEnter(Collider other) //Triggerがonになっている物に触れた時

@@ -8,7 +8,7 @@ public class Move : MonoBehaviour
     const float Speed = 0.05f;  //‰ñ“]ƒXƒs[ƒh
     const float MaxTilt = 20;  //Å‘åŒX‚«
     const float MinTilt = -20; //Å¬ŒX‚«
-    private float x = 0, y = 0, z = 0;
+    public float x = 0, y = 0, z = 0;
 
     public ResetManager reset;
 

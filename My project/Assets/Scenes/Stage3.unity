@@ -580,6 +580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGoal: 0
+  GoalCount: 0
 --- !u!65 &152889813
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1375,7 +1376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 243542343a4f7a547a49317a4b23d3f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: Stage1
+  SceneName: Stage3
 --- !u!114 &359590008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2461,6 +2462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGoal: 0
+  GoalCount: 0
 --- !u!65 &685654347
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2865,6 +2867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGoal: 0
+  GoalCount: 0
 --- !u!65 &787803824
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2984,6 +2987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGoal: 0
+  GoalCount: 0
 --- !u!65 &805517164
 BoxCollider:
   m_ObjectHideFlags: 0

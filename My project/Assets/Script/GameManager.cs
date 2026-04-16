@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,11 @@ public class GameManager : MonoBehaviour
     public GameObject GoalPanel;
     public Text GoalTime;
     public Goal goal;
+    //ステージの傾き表示
+    public GameObject TiltPanel;
+    public Text TiltTextX;
+    public Text TiltTextY;
+    public Move move;
     void Start()
     {
         TimeCount = 0f;
@@ -49,5 +55,10 @@ public class GameManager : MonoBehaviour
             TimePanel.SetActive(false);
             GoalTime.text = "クリアタイム:" + TimeCount.ToString("F1") + " 秒";
         }
+
+        //ステージの傾き表示
+        TiltTextX.text = "X:" + move.x.ToString("F1");
+        TiltTextY.text = "Z:" + move.z.ToString("F1");
+
     }
 }

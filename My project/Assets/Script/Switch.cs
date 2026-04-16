@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Switch : MonoBehaviour
 {
-    private int SwitchCount; //スイッチを踏んでいる数を確かめるため
-
+    private int SwitchCount;
     public GameObject[] DisappearWalls; //消える壁の配列
     public GameObject[] AppearingWalls; //出現する壁の配列
     void Start()
@@ -16,30 +15,47 @@ public class Switch : MonoBehaviour
     {
         if (other.CompareTag("Ball"))
         {
-            foreach (GameObject DWall in DisappearWalls) //スイッチを踏んでいる間消える壁
-            {
-                DWall.SetActive(false);
-            }
-            foreach (GameObject AWall in AppearingWalls) //スイッチを踏んでいる間出現する壁
-            {
-                AWall.SetActive(true);
-            }
+            SwitchCount++;
+            Debug.Log($"FUNC_ID={SwitchCount} Foo start");
 
+            if (SwitchCount > 0)
+            {
+                foreach (GameObject DWall in DisappearWalls) //スイッチを踏んでいる間消える壁
+                {
+                    DWall.SetActive(false);
+                }
+                foreach (GameObject AWall in AppearingWalls) //スイッチを踏んでいる間出現する壁
+                {
+                    AWall.SetActive(true);
+                }
+
+            }
         }
     }
     void OnTriggerExit(Collider other) //Triggerがonになっている物から離れた時
     {
+
         if (other.CompareTag("Ball"))
         {
-            foreach (GameObject DWall in DisappearWalls) //スイッチを踏んでいる間消える壁
+            SwitchCount--;
+            Debug.Log($"FUNC_ID={SwitchCount} Foo start");
+            if (SwitchCount <= 0)
             {
-                DWall.SetActive(true);
-            }
-            foreach (GameObject AWall in AppearingWalls) //スイッチを踏んでいる間出現する壁
-            {
-                AWall.SetActive(false);
-            }
+                foreach (GameObject DWall in DisappearWalls) //スイッチから離れると出現する壁
+                {
+                    DWall.SetActive(true);
+                }
+                foreach (GameObject AWall in AppearingWalls) //スイッチを踏んでいる間出現する壁
+                {
+                    AWall.SetActive(false);
+                }
 
+            }
         }
+    }
+
+    void Update()
+    {
+
     }
 }
