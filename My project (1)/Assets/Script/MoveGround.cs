@@ -22,11 +22,14 @@ public class MoveGround : MonoBehaviour
         var sKey = current.sKey; //Sキーの入力状態取得
         var dKey = current.dKey; //Dキーの入力状態取得
 
-        //Wキーが押されているかどうか
+        //キーが押されているかどうか
         if (wKey.isPressed) x += Speed;
         if (sKey.isPressed) x -= Speed;
         if (aKey.isPressed) z += Speed;
         if (dKey.isPressed) z -= Speed;
+        
+            
+        
 
         m_GRotation = new Vector3(x, y, z);
         transform.eulerAngles = m_GRotation;
