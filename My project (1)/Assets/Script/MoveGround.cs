@@ -2,9 +2,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class MoveGround : MonoBehaviour
 {
-    private Vector3 m_GRotation;
+    public Vector3 m_GRotation;
     private float x, y, z;
-    const float Speed = 0.03f; //地面の傾くスピード
+
+    const float Speed = 0.05f; //地面の傾くスピード
+    const float MaxTilt = 20;  //最大傾き
+    const float MinTilt = -20; //最小傾き
+
     void Start()
     {
         x = 0; y = 0; z = 0;
@@ -23,10 +27,10 @@ public class MoveGround : MonoBehaviour
         var dKey = current.dKey; //Dキーの入力状態取得
 
         //キーが押されているかどうか
-        if (wKey.isPressed) x += Speed;
-        if (sKey.isPressed) x -= Speed;
-        if (aKey.isPressed) z += Speed;
-        if (dKey.isPressed) z -= Speed;
+        if (wKey.isPressed && x < MaxTilt) x += Speed;
+        if (sKey.isPressed && x > MinTilt) x -= Speed;
+        if (aKey.isPressed && z < MaxTilt) z += Speed;
+        if (dKey.isPressed && z > MinTilt) z -= Speed;
         
             
         

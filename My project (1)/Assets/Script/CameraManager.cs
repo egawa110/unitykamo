@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Camera : MonoBehaviour
+public class CameraManager: MonoBehaviour
 {
     //カメラをプレイヤーに追尾
     public Player player; //Playerオブジェクト
@@ -12,6 +12,13 @@ public class Camera : MonoBehaviour
     private Vector3 m_Rotation;
     const float Speed = 0.05f;  //回転スピード
     private float rx, ry, rz;
+
+    //カメラズーム
+    public Camera cam;
+    private float scroll;
+    const float ZoomSpeed = 10f; //ズームするスピード
+    const float MinZoom = 5f;    //ズーム出来る最小値
+    const float MaxZoom = 100f;  //ズーム出来る最大値
 
     void Start()
     {
@@ -27,10 +34,10 @@ public class Camera : MonoBehaviour
     void Update()
     {
         //カメラをプレイヤーに追尾
-        player.mPlayer.y  = mCamera.y; //カメラのY軸を固定
-        player.mPlayer.z += mCamera.z; //カメラZ軸を引き気味に設定
+        player.m_Player.y  = mCamera.y; //カメラのY軸を固定
+        player.m_Player.z += mCamera.z; //カメラZ軸を引き気味に設定
 
-        transform.position = player.mPlayer;
+        transform.position = player.m_Player;
 
         //カメラの回転
         var current = Keyboard.current;  //現在のキーボード情報
@@ -43,6 +50,14 @@ public class Camera : MonoBehaviour
 
         m_Rotation = new Vector3(rx, ry, rz);  //カメラ回転
         transform.eulerAngles = m_Rotation;
+
+        //カメラズーム
+        scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (scroll != 0f)
+        {
+            cam.fieldOfView -= scroll * ZoomSpeed;
+            cam.fieldOfView = Mathf.Clamp(cam.fieldOfView, MinZoom, MaxZoom);
+        }
 
     }
 }
