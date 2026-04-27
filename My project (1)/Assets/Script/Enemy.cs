@@ -4,6 +4,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private Vector3 Direction;
+    private float posy;
     private bool Encounter = false;
     private bool Attack    = false;
 
@@ -12,7 +13,7 @@ public class Enemy : MonoBehaviour
     public GameObject ThrustEffect; 
 
     //クールタイム
-    const float Cooldown = 3000f;
+    const float Cooldown = 2500f;
     private float CoolTime;
     private float Count;
 
@@ -23,14 +24,13 @@ public class Enemy : MonoBehaviour
     }
 
     public Player player;
-
+    public MoveGround mgr;
     void Start()
     {
         HP = (int)EStatus.HP; Power = (int)EStatus.Power;
 
         Direction = Vector3.zero;
         transform.eulerAngles = Direction;
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,7 +45,6 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Encounter = false;
             Debug.Log("プレイヤーが離れた");
         }
 
@@ -53,14 +52,13 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (Encounter && !Attack)
+        if (Encounter && Count == 0)
         {
             //プレイヤーの位置を取得
             Direction = player.transform.position - transform.position;
             transform.forward = Direction; //プレイヤーの方を向く
             ThrustEffect.SetActive(true);
             Attack = true;
-
         }
 
         if (Attack)
@@ -71,13 +69,17 @@ public class Enemy : MonoBehaviour
                 CoolTime = 0;
                 Count++;
                 ThrustEffect.SetActive(false);
+            }
+            if (Count == 1)
+            {
                 ThrustAttack.SetActive(true);
             }
             if(Count == 2)
             {
-                Count = 0;
                 ThrustAttack.SetActive(false);
+                Count = 0;
                 Attack = false;
+                Encounter = false;
             }
         }
 
@@ -87,5 +89,9 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
 
+        //var pos = transform.position;
+        //posy = transform.position.y + 1;
+        //pos.y = posy;
+        //transform.position = pos;
     }
 }

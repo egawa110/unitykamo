@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public GameObject StrongEffect;
 
     public Enemy enemy;
+    private int PlayerHP, PlayerAttack;
 
     enum PStatus
     {
@@ -25,7 +26,7 @@ public class Player : MonoBehaviour
         x = 0; y = 2; z = 0;
         m_Player = new Vector3(x, y, z);
         transform.position = m_Player;
-
+        PlayerHP = (int)PStatus.HP; 
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -57,6 +58,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ThrustAttack")) //ThrustAttackTagに衝突時
+        {
+            Debug.Log("１０ダメージ受けた");
+            PlayerHP -= enemy.Power;
+        }
+    }
     void Update()
     {
         //プレイヤーの動くスピード
@@ -85,5 +94,12 @@ public class Player : MonoBehaviour
 
 
         m_Player = transform.position; //Playerの位置
+
+        //HPが0になると消える
+        if (PlayerHP <= 0)
+        {
+            Destroy(gameObject);
+        }
+
     }
 }
