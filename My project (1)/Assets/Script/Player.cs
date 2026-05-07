@@ -10,8 +10,10 @@ public class Player : MonoBehaviour
     public GameObject LightEffect;
     public GameObject StrongEffect;
 
-    public Enemy enemy;
     private int PlayerHP, PlayerAttack;
+
+    public Enemy enemy;
+    public GoalManager goal;
 
     enum PStatus
     {
@@ -65,6 +67,15 @@ public class Player : MonoBehaviour
             Debug.Log("１０ダメージ受けた");
             PlayerHP -= enemy.Power;
         }
+        if (other.CompareTag("Goal")) //Goalタグに触れた時
+        {
+            goal.isGoal = true;
+        }
+        if (other.CompareTag("HalfGoal")) //HalfGoalタグに触れた時
+        {
+            goal.GoalCount++;
+        }
+
     }
     void Update()
     {

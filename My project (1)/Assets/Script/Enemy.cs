@@ -17,14 +17,14 @@ public class Enemy : MonoBehaviour
     private float CoolTime;
     private float Count;
 
+    public Player player;
+
     enum EStatus //初期ステータス
     {
         HP = 20000000,
         Power = 10,
     }
 
-    public Player player;
-    public MoveGround mgr;
     void Start()
     {
         HP = (int)EStatus.HP; Power = (int)EStatus.Power;
@@ -88,10 +88,5 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        //var pos = transform.position;
-        //posy = transform.position.y + 1;
-        //pos.y = posy;
-        //transform.position = pos;
     }
 }
