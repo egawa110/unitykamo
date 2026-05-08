@@ -4,13 +4,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private Vector3 Direction;
-    private float posy;
     private bool Encounter = false;
     private bool Attack    = false;
 
-    public int HP, Power; //ステータス
+    public int HP, Power;           //ステータス
     public GameObject ThrustAttack; //攻撃オブジェクト
-    public GameObject ThrustEffect; 
+    public GameObject ThrustEffect;
 
     //クールタイム
     const float Cooldown = 2500f;
@@ -21,7 +20,7 @@ public class Enemy : MonoBehaviour
 
     enum EStatus //初期ステータス
     {
-        HP = 20000000,
+        HP = 20,
         Power = 10,
     }
 

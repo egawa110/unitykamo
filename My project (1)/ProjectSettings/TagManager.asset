@@ -9,6 +9,8 @@ TagManager:
   - Ground
   - Goal
   - HalfGoal
+  - LightAttack
+  - StrongAttack
   layers:
   - Default
   - TransparentFX

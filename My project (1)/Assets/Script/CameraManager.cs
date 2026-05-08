@@ -34,10 +34,10 @@ public class CameraManager: MonoBehaviour
     void Update()
     {
         //カメラをプレイヤーに追尾
-        player.m_Player.y  = mCamera.y; //カメラのY軸を固定
-        player.m_Player.z += mCamera.z; //カメラZ軸を引き気味に設定
+        player.PlayerPos.y  = mCamera.y; //カメラのY軸を固定
+        player.PlayerPos.z += mCamera.z; //カメラZ軸を引き気味に設定
 
-        transform.position = player.m_Player;
+        transform.position = player.PlayerPos;
 
         //カメラの回転
         var current = Keyboard.current;  //現在のキーボード情報
