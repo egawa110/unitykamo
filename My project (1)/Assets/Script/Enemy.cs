@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
 
     enum EStatus //初期ステータス
     {
-        HP = 20,
+        HP = 30,
         Power = 10,
     }
 
