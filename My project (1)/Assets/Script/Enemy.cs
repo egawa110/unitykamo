@@ -51,34 +51,37 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (Encounter && Count == 0)
+        if(player.PlayerDeth == false)
         {
-            //プレイヤーの位置を取得
-            Direction = player.transform.position - transform.position;
-            transform.forward = Direction; //プレイヤーの方を向く
-            ThrustEffect.SetActive(true);
-            Attack = true;
-        }
+            if (Encounter && Count == 0)
+            {
+                //プレイヤーの位置を取得
+                Direction = player.transform.position - transform.position;
+                transform.forward = Direction; //プレイヤーの方を向く
+                ThrustEffect.SetActive(true);
+                Attack = true;
+            }
 
-        if (Attack)
-        {
-            CoolTime++;
-            if(CoolTime == Cooldown)
+            if (Attack)
             {
-                CoolTime = 0;
-                Count++;
-                ThrustEffect.SetActive(false);
-            }
-            if (Count == 1)
-            {
-                ThrustAttack.SetActive(true);
-            }
-            if(Count == 2)
-            {
-                ThrustAttack.SetActive(false);
-                Count = 0;
-                Attack = false;
-                Encounter = false;
+                CoolTime++;
+                if (CoolTime == Cooldown)
+                {
+                    CoolTime = 0;
+                    Count++;
+                    ThrustEffect.SetActive(false);
+                }
+                if (Count == 1)
+                {
+                    ThrustAttack.SetActive(true);
+                }
+                if (Count == 2)
+                {
+                    ThrustAttack.SetActive(false);
+                    Count = 0;
+                    Attack = false;
+                    Encounter = false;
+                }
             }
         }
 

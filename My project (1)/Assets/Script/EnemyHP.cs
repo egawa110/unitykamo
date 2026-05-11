@@ -12,7 +12,7 @@ public class EnemyHP : MonoBehaviour
             Debug.Log("“G‚É‚P‚Oƒ_ƒ[ƒW—^‚¦‚½");
 
         }
-        if (other.CompareTag("StrongAttack"))
+        else if (other.CompareTag("StrongAttack"))
         {
             enemy.HP -= player.PAttack;
             Debug.Log("“G‚É‚Q‚Oƒ_ƒ[ƒW—^‚¦‚½");

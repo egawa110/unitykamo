@@ -2,18 +2,19 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class MoveGround : MonoBehaviour
 {
-    public Vector3 m_GRotation;
+    public Vector3 GRotation;
     private float x, y, z;
 
     const float Speed = 0.05f; //’n–Ê‚ÌŒX‚­ƒXƒs[ƒh
     const float MaxTilt = 20;  //Å‘åŒX‚«
     const float MinTilt = -20; //Å¬ŒX‚«
 
+    public WarpSwitch warpswitch;
     void Start()
     {
         x = 0; y = 0; z = 0;
-        m_GRotation = new Vector3(x, y, z);
-        transform.eulerAngles = m_GRotation;
+        GRotation = new Vector3(x, y, z);
+        transform.eulerAngles = GRotation;
     }
 
     void Update()
@@ -35,11 +36,16 @@ public class MoveGround : MonoBehaviour
             if (dKey.isPressed && z > MinTilt) z -= Speed;
         }
 
-
-
-
-        m_GRotation = new Vector3(x, y, z);
-        transform.eulerAngles = m_GRotation;
-
+        if(warpswitch.WarpFlag == true)
+        {
+            x = 0; y = 0; z = 0;
+            GRotation = Vector3.zero;
+            transform.eulerAngles = Vector3.zero;
+        }
+        else
+        {
+            GRotation = new Vector3(x, y, z);
+            transform.eulerAngles = GRotation;
+        }
     }
 }

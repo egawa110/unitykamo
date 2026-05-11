@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 
     private int Php;
     public int PAttack;
+    public bool PlayerDeth;
 
     public Enemy enemy;
     public GoalManager goal;
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour
         transform.position = PlayerPos;
         Php = (int)m_PStatus.HP;
         PAttack = 0;
+        PlayerDeth = false;
     }
     //void OnCollisionEnter(Collision collision)
     //{
@@ -117,6 +119,7 @@ public class Player : MonoBehaviour
         if (Php <= 0)
         {
             Destroy(gameObject);
+            PlayerDeth = true;
         }
 
     }

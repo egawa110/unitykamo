@@ -11,7 +11,7 @@ public class WallSwitch : MonoBehaviour
 
     void OnTriggerEnter(Collider other) 
     {
-        if (other.gameObject.name == "Player")
+        if (other.CompareTag("Player"))
         {
             foreach (GameObject DWall in DisappearWalls) //スイッチを踏んでいる間消える壁
             {
