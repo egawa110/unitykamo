@@ -37,6 +37,7 @@ public class WarpSwitch : MonoBehaviour
             Debug.Log("ワープスイッチを押した");
             player.transform.eulerAngles = WarpRotation;
             player.transform.position = WarpPos;  //プレイヤーをワープ
+
             if (Count == CoolTime)
             {
                 Count = 0f;

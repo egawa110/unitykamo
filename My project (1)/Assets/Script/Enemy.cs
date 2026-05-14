@@ -4,8 +4,10 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private Vector3 Direction;
+    private Vector3 m_StartPos;
     private bool Encounter = false;
     private bool Attack    = false;
+    private float posy;
 
     public int HP, Power;           //ステータス
     public GameObject ThrustAttack; //攻撃オブジェクト
@@ -17,15 +19,18 @@ public class Enemy : MonoBehaviour
     private float Count;
 
     public Player player;
+    public WarpSwitch wp;
 
     enum EStatus //初期ステータス
     {
-        HP = 30,
+        HP = 50,
         Power = 10,
     }
 
     void Start()
     {
+        m_StartPos = transform.position;
+        posy = transform.position.y;
         HP = (int)EStatus.HP; Power = (int)EStatus.Power;
 
         Direction = Vector3.zero;
@@ -89,6 +94,12 @@ public class Enemy : MonoBehaviour
         if (HP <= 0)
         {
             Destroy(gameObject);
+        }
+
+        //ワープ
+        if(wp.WarpFlag == true)
+        {
+            transform.position = new Vector3(m_StartPos.x, posy, m_StartPos.z);
         }
     }
 }

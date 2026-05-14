@@ -3,6 +3,8 @@ public class Player : MonoBehaviour
 {
     public Vector3 PlayerPos;
     private Vector3 m_StartPos;
+    private Vector3 m_PlayerRotate;
+    public Rigidbody rb;
 
     //プレイヤーの動く速度
     const float m_LightSpeed = -3f;  //弱攻撃のスピード
@@ -18,6 +20,7 @@ public class Player : MonoBehaviour
 
     public Enemy enemy;
     public GoalManager goal;
+    public WarpSwitch wp;
 
     enum m_PStatus
     {
@@ -35,36 +38,9 @@ public class Player : MonoBehaviour
         Php = (int)m_PStatus.HP;
         PAttack = 0;
         PlayerDeth = false;
+        rb = GetComponent<Rigidbody>(); //PlayerのRigidbodyを獲得
+
     }
-    //void OnCollisionEnter(Collision collision)
-    //{
-
-    //    if (collision.gameObject.CompareTag("Enemy")) //EnemyTagに衝突時
-    //    {
-    //        Debug.Log("敵に衝突した");
-    //        float impactPower = collision.relativeVelocity.magnitude;
-    //        Debug.Log("衝突: " + impactPower);
-
-    //        //Enemyに強攻撃
-    //        if (collision.relativeVelocity.z < m_StrongSpeed ||
-    //            collision.relativeVelocity.x < m_StrongSpeed) 
-    //        {
-    //            Debug.Log("敵に強攻撃");
-    //            enemy.HP -= (int)PStatus.StrongPower;
-
-    //        }
-    //        //Enemyに弱攻撃
-    //        else if (collision.relativeVelocity.z < m_LightSpeed ||
-    //　　　　　　     collision.relativeVelocity.x < m_LightSpeed)
-    //        {
-    //            Debug.Log("敵に弱攻撃");
-    //            enemy.HP -= (int)PStatus.LightPower;
-
-    //        }
-
-
-    //    }
-    //}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -81,13 +57,14 @@ public class Player : MonoBehaviour
         {
             goal.GoalCount++;
         }
-
     }
+
     void Update()
     {
+        //プレイヤーの向き
+
         //プレイヤーの動くスピード
         Vector3 velocity = GetComponent<Rigidbody>().linearVelocity;
-
                 //強エフェクト表示
         if (velocity.x > -m_StrongSpeed || velocity.x < m_StrongSpeed ||
             velocity.z > -m_StrongSpeed || velocity.z < m_StrongSpeed)
@@ -112,7 +89,6 @@ public class Player : MonoBehaviour
             PAttack = 0;
         }
 
-
         PlayerPos = transform.position; //Playerの位置
 
         //HPが0になると消える
@@ -122,5 +98,11 @@ public class Player : MonoBehaviour
             PlayerDeth = true;
         }
 
+        //ワープ
+        if(wp.WarpFlag == true)
+        {
+            rb.linearVelocity = Vector3.zero;  //直線の慣性をリセット
+            rb.angularVelocity = Vector3.zero;  //回転の慣性をリセット
+        }
     }
 }
