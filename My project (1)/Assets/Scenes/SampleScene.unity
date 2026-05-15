@@ -394,7 +394,7 @@ PrefabInstance:
     - target: {fileID: 13700000, guid: 9ce6002518e821e43b4f97c76700fbac, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a51491c7cbe42504f96c1a77cb52d797, type: 2}
+      objectReference: {fileID: 2100000, guid: b23563616ad050144a0d5daa167d05af, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1753,12 +1753,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerPos: {x: 0, y: 0, z: 0}
-  rb: {fileID: 0}
+  PlayerRotate: {x: 0, y: 0, z: 0}
   LightEffect: {fileID: 1594647368}
   StrongEffect: {fileID: 1727254835}
   StartPosition: {fileID: 0}
+  hp: 0
   PAttack: 0
   PlayerDeth: 0
+  rb: {fileID: 0}
   enemy: {fileID: 2078221388}
   goal: {fileID: 0}
   wp: {fileID: 0}
