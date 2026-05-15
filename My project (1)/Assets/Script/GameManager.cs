@@ -7,15 +7,18 @@ public class GameManager : MonoBehaviour
     //ポーズ画面
     public GameObject Pause;
     private bool isVisible = false;
-    //タイマー
+    //タイマーとかHPとか
     public GameObject TimePanel;
     public Text TimeText;
     private float TimeCount;
     //ゴール時
     public GameObject GoalPanel;
     public Text GoalTime;
-    public GoalManager goal;
+    //プレイヤー死亡時
+    public GameObject DethPanel;
 
+    public GoalManager goal;
+    public Player player;
     void Start()
     {
         TimeCount = 0f;
@@ -28,12 +31,12 @@ public class GameManager : MonoBehaviour
         if (current == null) return;     //キーボード接続チェック
         var escKey = current.escapeKey; //Wキーの入力状態取得
 
-        //タイマー
+        //UIパネル
         if (!goal.isGoal)
         {
+            //タイマー
             TimeCount += Time.deltaTime;
             TimeText.text = "Time : " + TimeCount. ToString ("F1");
-
         }
 
         //ポーズ画面
@@ -54,6 +57,12 @@ public class GameManager : MonoBehaviour
             GoalPanel.SetActive(true);
             TimePanel.SetActive(false);
             GoalTime.text = "クリアタイム:" + TimeCount.ToString("F1") + " 秒";
+        }
+
+        //死亡時
+        if(player.PlayerDeth == true)
+        {
+            DethPanel.SetActive(true);
         }
 
     }
