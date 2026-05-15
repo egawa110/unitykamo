@@ -11,16 +11,25 @@ public class Player : MonoBehaviour
     public GameObject LightEffect;    //弱攻撃
     public GameObject StrongEffect;   //強攻撃
     public GameObject StartPosition;  //スタート位置
+    public GameObject PlayerObj;      //プレイヤー
 
-    public int hp;        //HP
+    public int hp;          //HP
     public int PAttack;     //攻撃力
     public bool PlayerDeth; //死亡フラグ
+    private int oldhp;      //元々のHP
+    private int second;     //ダメージ受けた時の点滅
+    private int count;
+    private const int time = 60;
+    private const int cooltime = 120;
+    private const int maxcount = 2;
+    private const int abyssdamage = 10;  //奈落に落ちた時のダメージ
+    public bool abyssflag = false;
 
-    public Rigidbody rb;
+    private Rigidbody rb;
     public Enemy enemy;
     public GoalManager goal;
     public WarpSwitch wp;
-
+    public HPBar hpb;
     enum m_PStatus
     {
         HP = 100,          //HP
@@ -34,11 +43,13 @@ public class Player : MonoBehaviour
         PlayerPos = StartPosition.transform.position; //スタート地点の位置を取得
         transform.position = PlayerPos;               //プレイヤーの位置
         transform.eulerAngles = Vector3.zero;         //プレイヤーの向き
-        hp = (int)m_PStatus.HP;                      //プレイヤーのHP
+        hp = (int)m_PStatus.HP;                       //プレイヤーのHP
+        oldhp = hp;                                   //元々のHPを保存
         PAttack = 0;                                  //プレイヤーの攻撃
         PlayerDeth = false;                           //死亡フラグ
         rb = GetComponent<Rigidbody>();               //PlayerのRigidbodyを獲得
-
+        second = 0;
+        count = 0;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -47,6 +58,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("１０ダメージ受けた");
             hp -= enemy.Power;
+            hpb.HPbar(hp, enemy.Power);
         }
         if (other.CompareTag("Goal")) //Goalタグに触れた時
         {
@@ -55,6 +67,23 @@ public class Player : MonoBehaviour
         if (other.CompareTag("HalfGoal")) //HalfGoalタグに触れた時
         {
             goal.GoalCount++;
+        }
+        if (other.CompareTag("Abyss"))
+        {
+            abyssflag = true;
+            if (hp != 0) //HPが０じゃない場合はスタート地点に戻す
+            {
+                transform.position = StartPosition.transform.position;
+                transform.eulerAngles = Vector3.zero;
+                rb.linearVelocity = Vector3.zero;  //直線の慣性をリセット
+                rb.angularVelocity = Vector3.zero;  //回転の慣性をリセット
+
+                hp -= abyssdamage;
+                hpb.HPbar(hp, abyssdamage);
+
+            }
+            else if(hp == 0)
+                PlayerDeth = true;
         }
     }
 
@@ -84,6 +113,29 @@ public class Player : MonoBehaviour
             StrongEffect.SetActive(false);
             LightEffect.SetActive(false);
             PAttack = 0;
+        }
+        
+        //ダメージエフェクト
+        if(oldhp != hp)
+        {
+            second++;
+            PlayerObj.SetActive(false);
+            if (count == maxcount)  //２回カウントすると解除
+            {
+                PlayerObj.SetActive(true);
+                oldhp = hp;
+                count = 0;
+                second = 0;
+            }
+            else if (second >= time) //２回点滅する
+            {
+                PlayerObj.SetActive(true);
+                if(second >= cooltime)
+                {
+                    count++;
+                    second = 0;
+                }
+            }
         }
 
         //HPが0になると消える

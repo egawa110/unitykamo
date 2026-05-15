@@ -11,6 +11,7 @@ TagManager:
   - HalfGoal
   - LightAttack
   - StrongAttack
+  - Abyss
   layers:
   - Default
   - TransparentFX

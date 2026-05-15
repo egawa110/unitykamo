@@ -3,7 +3,7 @@ using UnityEngine;
 public class WarpSwitch : MonoBehaviour
 {
     Vector3 WarpPos;
-    Vector3 WarpRotation;
+    Vector3 WarpRotation; //ワープした時のオブジェクトの傾き
     public GameObject WarpPosition;
     public bool WarpFlag;
     private float CoolTime;

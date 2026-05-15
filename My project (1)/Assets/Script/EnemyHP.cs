@@ -1,23 +1,24 @@
 using UnityEngine;
+using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 public class EnemyHP : MonoBehaviour
 {
     public Enemy enemy;
     public Player player;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("LightAttack"))
         {
-            enemy.HP -= player.PAttack;
+            enemy.hp -= player.PAttack;
             Debug.Log("ìGÇ…ÇPÇOÉ_ÉÅÅ[ÉWó^Ç¶ÇΩ");
 
         }
         else if (other.CompareTag("StrongAttack"))
         {
-            enemy.HP -= player.PAttack;
+            enemy.hp -= player.PAttack;
             Debug.Log("ìGÇ…ÇQÇOÉ_ÉÅÅ[ÉWó^Ç¶ÇΩ");
 
         }
-
     }
 }

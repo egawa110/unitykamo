@@ -10,6 +10,7 @@ public class MoveGround : MonoBehaviour
     const float MinTilt = -20; //最小傾き
 
     public WarpSwitch warpswitch;
+    public Player player;
     void Start()
     {
         x = 0; y = 0; z = 0;
@@ -36,11 +37,12 @@ public class MoveGround : MonoBehaviour
             if (dKey.isPressed && z > MinTilt) z -= Speed;
         }
 
-        if(warpswitch.WarpFlag == true) //プレイヤーがワープ時地面の傾き初期化
+        if(warpswitch.WarpFlag == true || player.abyssflag == true) //プレイヤーがワープ時地面の傾き初期化
         {
             x = 0; y = 0; z = 0;
             GRotation = Vector3.zero;
             transform.eulerAngles = Vector3.zero;
+            player.abyssflag = false;
         }
         else
         {
