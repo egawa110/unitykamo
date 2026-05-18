@@ -15,13 +15,13 @@ public class BreakWall : MonoBehaviour
     {
         if (other.CompareTag("LightAttack"))
         {
-            m_HP -= player.PAttack;
+            m_HP -= DamageCalculator.AttackDamage;
             Debug.Log("ï«Ç…ÇPÇOÉ_ÉÅÅ[ÉWó^Ç¶ÇΩ");
 
         }
         if (other.CompareTag("StrongAttack"))
         {
-            m_HP -= player.PAttack;
+            m_HP -= DamageCalculator.AttackDamage;
             Debug.Log("ï«Ç…ÇQÇOÉ_ÉÅÅ[ÉWó^Ç¶ÇΩ");
         }
     }

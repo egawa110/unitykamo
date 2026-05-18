@@ -5,8 +5,8 @@ public class Player : MonoBehaviour
     public Vector3 PlayerRotate;    //プレイヤーの向き
 
     //プレイヤーの動く速度
-    const float m_LightSpeed  = -3f;  //弱攻撃のスピード
-    const float m_StrongSpeed = -7f;  //強攻撃のスピード
+    const float m_LightSpeed  = 3f;  //弱攻撃のスピード
+    const float m_StrongSpeed = 7f;  //強攻撃のスピード
 
     public GameObject LightEffect;    //弱攻撃
     public GameObject StrongEffect;   //強攻撃
@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
     public GameObject PlayerObj;      //プレイヤー
 
     public int hp;          //HP
-    public int PAttack;     //攻撃力
     public bool PlayerDeth; //死亡フラグ
     private int oldhp;      //元々のHP
     private int second;     //ダメージ受けた時の点滅
@@ -30,11 +29,10 @@ public class Player : MonoBehaviour
     public GoalManager goal;
     public WarpSwitch wp;
     public HPBar hpb;
+
     enum m_PStatus
     {
         HP = 100,          //HP
-        LightPower = 10,  //弱攻撃
-        StrongPower = 20, //強攻撃
         Defense = 30,     //防御力
     }
 
@@ -45,7 +43,6 @@ public class Player : MonoBehaviour
         transform.eulerAngles = Vector3.zero;         //プレイヤーの向き
         hp = (int)m_PStatus.HP;                       //プレイヤーのHP
         oldhp = hp;                                   //元々のHPを保存
-        PAttack = 0;                                  //プレイヤーの攻撃
         PlayerDeth = false;                           //死亡フラグ
         rb = GetComponent<Rigidbody>();               //PlayerのRigidbodyを獲得
         second = 0;
@@ -91,52 +88,35 @@ public class Player : MonoBehaviour
     { 
         //プレイヤーの動くスピード
         Vector3 velocity = GetComponent<Rigidbody>().linearVelocity;
-                //強エフェクト表示
-        if (velocity.x > -m_StrongSpeed || velocity.x < m_StrongSpeed ||
-            velocity.z > -m_StrongSpeed || velocity.z < m_StrongSpeed)
-        {
-            StrongEffect.SetActive(true);
-            LightEffect.SetActive(false);
-            PAttack = (int)m_PStatus.StrongPower;
+        //攻撃
+        DamageCalculator.Attack(velocity);
+        StrongEffect.SetActive(DamageCalculator.sflag);
+        LightEffect.SetActive(DamageCalculator.lflag);
 
-        }
-        //弱エフェクト表示
-        else if (velocity.x > -m_LightSpeed ||velocity.x < m_LightSpeed ||
-            velocity.z > -m_LightSpeed || velocity.z < m_LightSpeed)
-        {
-            LightEffect.SetActive(true);
-            StrongEffect.SetActive(false);
-            PAttack = (int)m_PStatus.LightPower;
-        }
-        else
-        {
-            StrongEffect.SetActive(false);
-            LightEffect.SetActive(false);
-            PAttack = 0;
-        }
-        
-        //ダメージエフェクト
-        if(oldhp != hp)
-        {
-            second++;
-            PlayerObj.SetActive(false);
-            if (count == maxcount)  //２回カウントすると解除
-            {
-                PlayerObj.SetActive(true);
-                oldhp = hp;
-                count = 0;
-                second = 0;
-            }
-            else if (second >= time) //２回点滅する
-            {
-                PlayerObj.SetActive(true);
-                if(second >= cooltime)
-                {
-                    count++;
-                    second = 0;
-                }
-            }
-        }
+        //ダメージ受けた時のエフェクト
+        DamageCalculator.DamageEffect(hp);
+        PlayerObj.SetActive(DamageCalculator.isvisible);
+        //if (oldhp != hp)
+        //{
+        //    second++;
+        //    PlayerObj.SetActive(false);
+        //    if (count == maxcount)  //２回カウントすると解除
+        //    {
+        //        PlayerObj.SetActive(true);
+        //        oldhp = hp;
+        //        count = 0;
+        //        second = 0;
+        //    }
+        //    else if (second >= time) //２回点滅する
+        //    {
+        //        PlayerObj.SetActive(true);
+        //        if(second >= cooltime)
+        //        {
+        //            count++;
+        //            second = 0;
+        //        }
+        //    }
+        //}
 
         //HPが0になると消える
         if (hp <= 0)

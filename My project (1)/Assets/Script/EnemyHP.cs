@@ -10,13 +10,13 @@ public class EnemyHP : MonoBehaviour
     {
         if (other.CompareTag("LightAttack"))
         {
-            enemy.hp -= player.PAttack;
+            enemy.hp -= DamageCalculator.AttackDamage;
             Debug.Log("ìGÇ…ÇPÇOÉ_ÉÅÅ[ÉWó^Ç¶ÇΩ");
 
         }
         else if (other.CompareTag("StrongAttack"))
         {
-            enemy.hp -= player.PAttack;
+            enemy.hp -= DamageCalculator.AttackDamage;
             Debug.Log("ìGÇ…ÇQÇOÉ_ÉÅÅ[ÉWó^Ç¶ÇΩ");
 
         }
