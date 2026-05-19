@@ -1,12 +1,8 @@
 using UnityEngine;
 public class Player : MonoBehaviour
 {
-    public Vector3  PlayerPos;      //プレイヤーの位置
+    public Vector3 PlayerPos;       //プレイヤーの位置
     public Vector3 PlayerRotate;    //プレイヤーの向き
-
-    //プレイヤーの動く速度
-    const float m_LightSpeed  = 3f;  //弱攻撃のスピード
-    const float m_StrongSpeed = 7f;  //強攻撃のスピード
 
     public GameObject LightEffect;    //弱攻撃
     public GameObject StrongEffect;   //強攻撃
@@ -15,12 +11,6 @@ public class Player : MonoBehaviour
 
     public int hp;          //HP
     public bool PlayerDeth; //死亡フラグ
-    private int oldhp;      //元々のHP
-    private int second;     //ダメージ受けた時の点滅
-    private int count;
-    private const int time = 60;
-    private const int cooltime = 120;
-    private const int maxcount = 2;
     private const int abyssdamage = 10;  //奈落に落ちた時のダメージ
     public bool abyssflag = false;
 
@@ -42,11 +32,8 @@ public class Player : MonoBehaviour
         transform.position = PlayerPos;               //プレイヤーの位置
         transform.eulerAngles = Vector3.zero;         //プレイヤーの向き
         hp = (int)m_PStatus.HP;                       //プレイヤーのHP
-        oldhp = hp;                                   //元々のHPを保存
         PlayerDeth = false;                           //死亡フラグ
         rb = GetComponent<Rigidbody>();               //PlayerのRigidbodyを獲得
-        second = 0;
-        count = 0;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -96,27 +83,6 @@ public class Player : MonoBehaviour
         //ダメージ受けた時のエフェクト
         DamageCalculator.DamageEffect(hp);
         PlayerObj.SetActive(DamageCalculator.isvisible);
-        //if (oldhp != hp)
-        //{
-        //    second++;
-        //    PlayerObj.SetActive(false);
-        //    if (count == maxcount)  //２回カウントすると解除
-        //    {
-        //        PlayerObj.SetActive(true);
-        //        oldhp = hp;
-        //        count = 0;
-        //        second = 0;
-        //    }
-        //    else if (second >= time) //２回点滅する
-        //    {
-        //        PlayerObj.SetActive(true);
-        //        if(second >= cooltime)
-        //        {
-        //            count++;
-        //            second = 0;
-        //        }
-        //    }
-        //}
 
         //HPが0になると消える
         if (hp <= 0)

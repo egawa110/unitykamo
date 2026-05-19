@@ -87,4 +87,5 @@ public class DamageCalculator : MonoBehaviour
             oldhp = hp;
         }
     }
+
 }
