@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     public Vector3 PlayerPos;       //プレイヤーの位置
@@ -22,7 +23,7 @@ public class Player : MonoBehaviour
 
     enum m_PStatus
     {
-        HP = 100,          //HP
+        HP = 100,         //HP
         Defense = 30,     //防御力
     }
 
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
         PlayerPos = StartPosition.transform.position; //スタート地点の位置を取得
         transform.position = PlayerPos;               //プレイヤーの位置
         transform.eulerAngles = Vector3.zero;         //プレイヤーの向き
+        PlayerRotate = transform.eulerAngles;
         hp = (int)m_PStatus.HP;                       //プレイヤーのHP
         PlayerDeth = false;                           //死亡フラグ
         rb = GetComponent<Rigidbody>();               //PlayerのRigidbodyを獲得
@@ -41,8 +43,9 @@ public class Player : MonoBehaviour
         if (other.CompareTag("ThrustAttack")) //ThrustAttackTagに衝突時
         {
             Debug.Log("１０ダメージ受けた");
-            hp -= enemy.Power;
+            //hp -= enemy.Power;
             hpb.HPbar(hp, enemy.Power);
+            hp = hpb.HPbar(hp, enemy.Power);
         }
         if (other.CompareTag("Goal")) //Goalタグに触れた時
         {
@@ -62,8 +65,9 @@ public class Player : MonoBehaviour
                 rb.linearVelocity = Vector3.zero;  //直線の慣性をリセット
                 rb.angularVelocity = Vector3.zero;  //回転の慣性をリセット
 
-                hp -= abyssdamage;
+                //hp -= abyssdamage;
                 hpb.HPbar(hp, abyssdamage);
+                hp = hpb.HPbar(hp, abyssdamage);
 
             }
             else if(hp == 0)
@@ -72,9 +76,10 @@ public class Player : MonoBehaviour
     }
 
     void Update()
-    { 
+    {
         //プレイヤーの動くスピード
         Vector3 velocity = GetComponent<Rigidbody>().linearVelocity;
+
         //攻撃
         DamageCalculator.Attack(velocity);
         StrongEffect.SetActive(DamageCalculator.sflag);
@@ -97,9 +102,10 @@ public class Player : MonoBehaviour
             rb.linearVelocity = Vector3.zero;  //直線の慣性をリセット
             rb.angularVelocity = Vector3.zero;  //回転の慣性をリセット
         }
-
+        
         PlayerPos = transform.position; //Enemyに渡すPlayerの位置
-        //m_PlayerRotate = transform.eulerAngles;
-        //transform.eulerAngles = PlayerRotate; //プレイヤーの向き
+        PlayerRotate.x = transform.eulerAngles.x;
+        PlayerRotate.z = transform.eulerAngles.z;
+        transform.eulerAngles = PlayerRotate; //プレイヤーの向き
     }
 }

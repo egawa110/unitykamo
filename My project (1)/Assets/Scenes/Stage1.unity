@@ -2296,7 +2296,7 @@ GameObject:
   - component: {fileID: 698661267}
   - component: {fileID: 698661266}
   m_Layer: 5
-  m_Name: TimePanel
+  m_Name: UIPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
