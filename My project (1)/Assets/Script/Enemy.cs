@@ -11,10 +11,9 @@ public class Enemy : MonoBehaviour
     private bool Attack    = false;
     private float posy;
 
-    public int hp, Power;           //ステータス
+    public int enemyhp, Power;           //ステータス
     public GameObject ThrustAttack; //攻撃オブジェクト
     public GameObject ThrustEffect;
-
     //クールタイム
     const float Cooldown = 2500f;
     private float CoolTime;
@@ -28,10 +27,11 @@ public class Enemy : MonoBehaviour
     private const int cooltime = 120;
     private const int maxcount = 2;
 
+    private bool isvisible;
+
     public GameObject EnemyObj;
     public Player player;
     public WarpSwitch wp;
-
     enum EStatus //初期ステータス
     {
         HP = 50,
@@ -42,12 +42,12 @@ public class Enemy : MonoBehaviour
     {
         m_StartPos = transform.position; //最初の位置
         posy = transform.position.y; 
-        hp = (int)EStatus.HP; Power = (int)EStatus.Power;
+        enemyhp = (int)EStatus.HP; Power = (int)EStatus.Power;
 
         Direction = Vector3.zero; //回転の初期化
         transform.eulerAngles = Direction;
 
-        oldhp = hp; //初期HPを保存
+        oldhp = enemyhp; //初期HPを保存
     }
 
     private void OnTriggerEnter(Collider other)
@@ -103,30 +103,33 @@ public class Enemy : MonoBehaviour
             }
         }
         //ダメージエフェクト
-        if (oldhp != hp)
-        {
-            blinksecond++;
-            EnemyObj.SetActive(false);
-            if (blinkcount == maxcount) //２回カウントすると解除
-            {
-                EnemyObj.SetActive(true);
-                oldhp = hp;
-                blinkcount = 0;
-                blinksecond = 0;
-            }
-            else if (blinksecond >= time) //２回点滅する
-            {
-                EnemyObj.SetActive(true);
-                if (blinksecond >= cooltime)
-                {
-                    blinkcount++;
-                    blinksecond = 0;
-                }
-            }
-        }
+        //if (oldhp != hp)
+        //{
+        //    blinksecond++;
+        //    EnemyObj.SetActive(false);
+        //    if (blinkcount == maxcount) //２回カウントすると解除
+        //    {
+        //        EnemyObj.SetActive(true);
+        //        oldhp = hp;
+        //        blinkcount = 0;
+        //        blinksecond = 0;
+        //    }
+        //    else if (blinksecond >= time) //２回点滅する
+        //    {
+        //        EnemyObj.SetActive(true);
+        //        if (blinksecond >= cooltime)
+        //        {
+        //            blinkcount++;
+        //            blinksecond = 0;
+        //        }
+        //    }
+        //}
+        DamageCalculator.DamageEffect(isvisible,enemyhp);
+        isvisible = DamageCalculator.DamageEffect(isvisible, enemyhp);
+        EnemyObj.SetActive(isvisible);
 
         //HPが0になると消える
-        if (hp <= 0)
+        if (enemyhp <= 0)
         {
             Destroy(gameObject);
         }

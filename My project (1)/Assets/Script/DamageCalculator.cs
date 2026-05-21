@@ -7,9 +7,6 @@ public class DamageCalculator : MonoBehaviour
     //プレイヤーのスピード
     const float m_lightspeed = 3f;
     const float m_strongspeed = 7f;
-    //攻撃エフェクト用
-    public static bool sflag = false; 
-    public static bool lflag = false;
     //攻撃力
     public static int AttackDamage;
     //ダメージ受けた時
@@ -19,7 +16,6 @@ public class DamageCalculator : MonoBehaviour
     private const int maxcount = 2;
     private const int time = 60;
     private const int cooltime = 120;
-    public static bool isvisible;
     enum pstatus
     {
         lightpower  = 10, //弱攻撃
@@ -29,36 +25,52 @@ public class DamageCalculator : MonoBehaviour
     private void Start()
     {
         AttackDamage = 0;
-        isvisible = true;
+        oldhp = 0;
     }
 
-    public static void Attack(Vector3 velocity) //攻撃
+    public static bool StrongAttack(Vector3 velocity, bool strongflag) //強攻撃
     {
         //強攻撃
         if (Mathf.Abs(velocity.x) > m_strongspeed ||
             Mathf.Abs(velocity.z) > m_strongspeed)
         {
-            sflag = true;
-            lflag = false;
+            strongflag = true;
             AttackDamage = (int)pstatus.strongpower;
         }
-        //弱攻撃
         else if (Mathf.Abs(velocity.x) > m_lightspeed ||
                  Mathf.Abs(velocity.z) > m_lightspeed)
         {
-            sflag = false;
-            lflag = true;
-            AttackDamage = (int)pstatus.lightpower;
+            strongflag = false;
         }
         else
         {
-            sflag = false;
-            lflag = false;
+            strongflag = false;
             AttackDamage = 0;
         }
+        return strongflag;
+    }
+    public static bool LightAttack(Vector3 velocity, bool lightflag) //弱攻撃
+    {
+        //強攻撃
+        if (Mathf.Abs(velocity.x) > m_strongspeed ||
+            Mathf.Abs(velocity.z) > m_strongspeed){
+            lightflag = false;
+        }
+        else if (Mathf.Abs(velocity.x) > m_lightspeed ||
+            Mathf.Abs(velocity.z) > m_lightspeed)
+        {
+            lightflag = true;
+            AttackDamage = (int)pstatus.strongpower;
+        }
+        else
+        {
+            lightflag = false;
+            AttackDamage = 0;
+        }
+        return lightflag;
     }
 
-    public static void DamageEffect(int hp)
+    public static bool DamageEffect(bool isvisible, int hp)
     {
         //ダメージ受けた時のエフェクト
         if (oldhp != hp)
@@ -86,6 +98,8 @@ public class DamageCalculator : MonoBehaviour
         {
             oldhp = hp;
         }
+
+        return isvisible;
     }
 
 }

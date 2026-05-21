@@ -10,6 +10,12 @@ public class Player : MonoBehaviour
     public GameObject StartPosition;  //スタート位置
     public GameObject PlayerObj;      //プレイヤー
 
+    //攻撃エフェクト
+    private bool sflag;
+    private bool lflag;
+    //点滅
+    private bool isvisible;
+
     public int hp;          //HP
     public bool PlayerDeth; //死亡フラグ
     private const int abyssdamage = 10;  //奈落に落ちた時のダメージ
@@ -36,6 +42,8 @@ public class Player : MonoBehaviour
         hp = (int)m_PStatus.HP;                       //プレイヤーのHP
         PlayerDeth = false;                           //死亡フラグ
         rb = GetComponent<Rigidbody>();               //PlayerのRigidbodyを獲得
+        sflag = false; lflag = false;　　　　　　　　 //攻撃エフェクト
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -81,13 +89,17 @@ public class Player : MonoBehaviour
         Vector3 velocity = GetComponent<Rigidbody>().linearVelocity;
 
         //攻撃
-        DamageCalculator.Attack(velocity);
-        StrongEffect.SetActive(DamageCalculator.sflag);
-        LightEffect.SetActive(DamageCalculator.lflag);
+        DamageCalculator.StrongAttack(velocity, sflag);
+        DamageCalculator.LightAttack(velocity, lflag);
+        sflag = DamageCalculator.StrongAttack(velocity, sflag);
+        lflag = DamageCalculator.LightAttack(velocity, lflag);
+        StrongEffect.SetActive(sflag);
+        LightEffect.SetActive(lflag);
 
         //ダメージ受けた時のエフェクト
-        DamageCalculator.DamageEffect(hp);
-        PlayerObj.SetActive(DamageCalculator.isvisible);
+        DamageCalculator.DamageEffect(isvisible, hp);
+        isvisible = DamageCalculator.DamageEffect(isvisible, hp);
+        PlayerObj.SetActive(isvisible);
 
         //HPが0になると消える
         if (hp <= 0)
