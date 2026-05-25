@@ -113,7 +113,6 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
             PlayerDeth = true;
         }
-
         //ワープ
         if(wp.WarpFlag == true)
         {
