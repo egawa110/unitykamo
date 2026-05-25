@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     private Vector3 m_StartPos;
     private bool Encounter = false;
     private bool Attack    = false;
-    private float posy;
+    private const float posy = 1;
 
     public int enemyhp, Power;           //ステータス
     public GameObject ThrustAttack; //攻撃オブジェクト
@@ -18,20 +18,14 @@ public class Enemy : MonoBehaviour
     const float Cooldown = 2500f;
     private float CoolTime;
     private float Count;
-
-    //ダメージエフェクト用
-    public int oldhp;
-    private int blinkcount;
-    private int blinksecond;
-    private const int time = 60;
-    private const int cooltime = 120;
-    private const int maxcount = 2;
-
-    private bool isvisible;
+    //点滅用
+    private bool isvisible = true;
 
     public GameObject EnemyObj;
     public Player player;
     public WarpSwitch wp;
+    Effect ef = new Effect(); //ダメージを受けた時に点滅する
+
     enum EStatus //初期ステータス
     {
         HP = 50,
@@ -41,13 +35,10 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         m_StartPos = transform.position; //最初の位置
-        posy = transform.position.y; 
         enemyhp = (int)EStatus.HP; Power = (int)EStatus.Power;
 
         Direction = Vector3.zero; //回転の初期化
         transform.eulerAngles = Direction;
-
-        oldhp = enemyhp; //初期HPを保存
     }
 
     private void OnTriggerEnter(Collider other)
@@ -102,30 +93,9 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
-        //ダメージエフェクト
-        //if (oldhp != hp)
-        //{
-        //    blinksecond++;
-        //    EnemyObj.SetActive(false);
-        //    if (blinkcount == maxcount) //２回カウントすると解除
-        //    {
-        //        EnemyObj.SetActive(true);
-        //        oldhp = hp;
-        //        blinkcount = 0;
-        //        blinksecond = 0;
-        //    }
-        //    else if (blinksecond >= time) //２回点滅する
-        //    {
-        //        EnemyObj.SetActive(true);
-        //        if (blinksecond >= cooltime)
-        //        {
-        //            blinkcount++;
-        //            blinksecond = 0;
-        //        }
-        //    }
-        //}
-        DamageCalculator.DamageEffect(isvisible,enemyhp);
-        isvisible = DamageCalculator.DamageEffect(isvisible, enemyhp);
+
+        //ダメージ受けた時に点滅エフェクト
+        isvisible = ef.DamageEffect(isvisible, enemyhp);
         EnemyObj.SetActive(isvisible);
 
         //HPが0になると消える
@@ -133,10 +103,11 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
         //ワープ
-        if(wp.WarpFlag == true || player.abyssflag == true)
+        if (wp.WarpFlag == true || player.abyssflag == true)
         {
+            Debug.Log("敵の位置を初期化した");
+            transform.eulerAngles = Vector3.zero;
             transform.position = new Vector3(m_StartPos.x, posy, m_StartPos.z);
         }
     }

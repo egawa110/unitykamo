@@ -9,13 +9,6 @@ public class DamageCalculator : MonoBehaviour
     const float m_strongspeed = 7f;
     //攻撃力
     public static int AttackDamage;
-    //ダメージ受けた時
-    public static int oldhp;
-    public static int second;     
-    public static int count;
-    private const int maxcount = 2;
-    private const int time = 60;
-    private const int cooltime = 120;
     enum pstatus
     {
         lightpower  = 10, //弱攻撃
@@ -25,7 +18,6 @@ public class DamageCalculator : MonoBehaviour
     private void Start()
     {
         AttackDamage = 0;
-        oldhp = 0;
     }
 
     public static bool StrongAttack(Vector3 velocity, bool strongflag) //強攻撃
@@ -70,10 +62,28 @@ public class DamageCalculator : MonoBehaviour
         return lightflag;
     }
 
-    public static bool DamageEffect(bool isvisible, int hp)
+
+}
+
+public class Effect
+{
+    //ダメージ受けた時
+    private int oldhp = 0;
+    private int second;
+    private int count;
+    private const int maxcount = 2;
+    private const int time = 60;
+    private const int cooltime = 120;
+
+    public bool DamageEffect(bool isvisible, int hp)
     {
+        if (oldhp == 0)
+        {
+            oldhp = hp;
+        }
+
         //ダメージ受けた時のエフェクト
-        if (oldhp != hp)
+        else if (oldhp != hp)
         {
             second++;
             isvisible = false;
@@ -93,10 +103,6 @@ public class DamageCalculator : MonoBehaviour
                     second = 0;
                 }
             }
-        }
-        else
-        {
-            oldhp = hp;
         }
 
         return isvisible;

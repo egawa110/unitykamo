@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     public GoalManager goal;
     public WarpSwitch wp;
     public HPBar hpb;
+    Effect ef = new Effect(); //ダメージを受けた時に点滅する
 
     enum m_PStatus
     {
@@ -43,7 +44,7 @@ public class Player : MonoBehaviour
         PlayerDeth = false;                           //死亡フラグ
         rb = GetComponent<Rigidbody>();               //PlayerのRigidbodyを獲得
         sflag = false; lflag = false;　　　　　　　　 //攻撃エフェクト
-
+        isvisible = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -81,6 +82,12 @@ public class Player : MonoBehaviour
             else if(hp == 0)
                 PlayerDeth = true;
         }
+        else if (!other.CompareTag("Abyss") && abyssflag)
+        {
+            Debug.Log("ステージの上");
+            abyssflag = false;
+        }
+
     }
 
     void Update()
@@ -96,9 +103,8 @@ public class Player : MonoBehaviour
         StrongEffect.SetActive(sflag);
         LightEffect.SetActive(lflag);
 
-        //ダメージ受けた時のエフェクト
-        DamageCalculator.DamageEffect(isvisible, hp);
-        isvisible = DamageCalculator.DamageEffect(isvisible, hp);
+        //ダメージ受けた時に点滅エフェクト
+        isvisible = ef.DamageEffect(isvisible, hp);
         PlayerObj.SetActive(isvisible);
 
         //HPが0になると消える
