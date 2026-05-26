@@ -7,38 +7,41 @@ public class Enemy : MonoBehaviour
 {
     private Vector3 Direction;
     private Vector3 m_StartPos;
-    private bool Encounter = false;
-    private bool Attack    = false;
+    //Yの位置初期化用
     private const float posy = 1;
-
-    public int enemyhp, Power;           //ステータス
+    //攻撃用
+    private bool Encounter = false;
+    private bool ap = false;
+    public bool attack = false;
     public GameObject ThrustAttack; //攻撃オブジェクト
-    public GameObject ThrustEffect;
     //クールタイム
-    const float Cooldown = 2500f;
-    private float CoolTime;
-    private float Count;
+    public int Count; //攻撃までのカウントダウン
+    //ステータス
+    public int enemyhp;
+    public const int power = 10;
     //点滅用
     private bool isvisible = true;
-
+    public bool invincible = false;
+    //他のスクリプト呼び出し
     public GameObject EnemyObj;
     public Player player;
     public WarpSwitch wp;
     Effect ef = new Effect(); //ダメージを受けた時に点滅する
+    EnemyAttack eattack = new EnemyAttack();
 
     enum EStatus //初期ステータス
     {
-        HP = 50,
+        HP = 150,
         Power = 10,
     }
 
     void Start()
     {
         m_StartPos = transform.position; //最初の位置
-        enemyhp = (int)EStatus.HP; Power = (int)EStatus.Power;
-
+        enemyhp = (int)EStatus.HP; //ステータスの初期化
         Direction = Vector3.zero; //回転の初期化
         transform.eulerAngles = Direction;
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,40 +65,22 @@ public class Enemy : MonoBehaviour
     {
         if(player.PlayerDeth == false)
         {
-            if (Encounter && Count == 0)
+            if (Encounter && Count == 0)//プレイヤーに向く
             {
                 //プレイヤーの位置を取得
                 Direction = player.transform.position - transform.position;
                 transform.forward = Direction; //プレイヤーの方を向く
-                ThrustEffect.SetActive(true);
-                Attack = true;
+                ap = true;
             }
-
-            if (Attack)
+            if(ap)//プレイヤーのいる方向に攻撃する
             {
-                CoolTime++;
-                if (CoolTime == Cooldown)
-                {
-                    CoolTime = 0;
-                    Count++;
-                    ThrustEffect.SetActive(false);
-                }
-                if (Count == 1)
-                {
-                    ThrustAttack.SetActive(true);
-                }
-                if (Count == 2)
-                {
-                    ThrustAttack.SetActive(false);
-                    Count = 0;
-                    Attack = false;
-                    Encounter = false;
-                }
+                (ap, Encounter, attack,Count) = eattack.ThrustAttack(ap, Encounter);
             }
+            ThrustAttack.SetActive(attack);
         }
 
         //ダメージ受けた時に点滅エフェクト
-        isvisible = ef.DamageEffect(isvisible, enemyhp);
+        (isvisible, invincible) = ef.DamageEffect(isvisible, enemyhp);
         EnemyObj.SetActive(isvisible);
 
         //HPが0になると消える

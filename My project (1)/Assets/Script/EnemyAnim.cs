@@ -5,6 +5,8 @@ public class EnemyAnim : MonoBehaviour
 {
     //アニメーション
     private Animator anim = null;
+
+    public Enemy enemy;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -18,11 +20,8 @@ public class EnemyAnim : MonoBehaviour
         if (current == null) return;     //キーボード接続チェック
 
         var fKey = current.fKey; //Wキーの入力状態取得
-        var aKey = current.aKey; //Aキーの入力状態取得
-        var sKey = current.sKey; //Sキーの入力状態取得
-        var dKey = current.dKey; //Dキーの入力状態取得
 
-        if (fKey.isPressed)
+        if (enemy.attack)
         {
             anim.SetBool("isAttack", true);
 
@@ -35,3 +34,4 @@ public class EnemyAnim : MonoBehaviour
 
     }
 }
+

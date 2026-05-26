@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 public class DamageCalculator : MonoBehaviour
@@ -65,6 +66,43 @@ public class DamageCalculator : MonoBehaviour
 
 }
 
+public class EnemyAttack
+{
+    //クールタイム
+    const float Cooldown = 2500f;
+    const float Cooldown2 = 625f;
+    private float second = 0;
+    public int Count; //攻撃までのカウントダウン
+
+    bool attack = false;
+
+    public (bool, bool, bool, int) ThrustAttack(bool ap, bool Encounter)
+    {
+        if (Encounter)
+        {
+            second++;
+            if (second == Cooldown)
+            {
+                second = 0;
+                Count++;
+            }
+            if (Count == 1)
+            {
+                attack = true;
+            }
+            if (Count != 0 && second == Cooldown2)
+            {
+                Count = 0;
+                attack = false;
+                ap = false;
+                Encounter = false;
+            }
+        }
+        return (ap, Encounter, attack, Count);
+    }
+
+}
+
 public class Effect
 {
     //ダメージ受けた時
@@ -74,22 +112,24 @@ public class Effect
     private const int maxcount = 2;
     private const int time = 60;
     private const int cooltime = 120;
+    private bool Invincible = false;
 
-    public bool DamageEffect(bool isvisible, int hp)
+    public (bool, bool) DamageEffect(bool isvisible, int hp)
     {
         if (oldhp == 0)
         {
             oldhp = hp;
         }
-
         //ダメージ受けた時のエフェクト
         else if (oldhp != hp)
         {
             second++;
             isvisible = false;
+            Invincible = true;
             if (count == maxcount)  //２回カウントすると解除
             {
                 isvisible = true;
+                Invincible = false;
                 oldhp = hp;
                 count = 0;
                 second = 0;
@@ -105,7 +145,7 @@ public class Effect
             }
         }
 
-        return isvisible;
+        return (isvisible, Invincible);
     }
 
 }

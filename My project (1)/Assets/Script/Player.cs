@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private bool lflag;
     //点滅
     private bool isvisible;
+    private bool invincible;
 
     public int hp;          //HP
     public bool PlayerDeth; //死亡フラグ
@@ -44,17 +45,20 @@ public class Player : MonoBehaviour
         PlayerDeth = false;                           //死亡フラグ
         rb = GetComponent<Rigidbody>();               //PlayerのRigidbodyを獲得
         sflag = false; lflag = false;　　　　　　　　 //攻撃エフェクト
+        //攻撃を受けた時
         isvisible = true;
+        invincible = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("ThrustAttack")) //ThrustAttackTagに衝突時
+        if (!invincible)
         {
-            Debug.Log("１０ダメージ受けた");
-            //hp -= enemy.Power;
-            hpb.HPbar(hp, enemy.Power);
-            hp = hpb.HPbar(hp, enemy.Power);
+            if (other.CompareTag("ThrustAttack")) //ThrustAttackTagに衝突時
+            {
+                Debug.Log("１０ダメージ受けた");
+                hp = hpb.HPbar(hp, Enemy.power);
+            }
         }
         if (other.CompareTag("Goal")) //Goalタグに触れた時
         {
@@ -73,14 +77,9 @@ public class Player : MonoBehaviour
                 transform.eulerAngles = Vector3.zero;
                 rb.linearVelocity = Vector3.zero;  //直線の慣性をリセット
                 rb.angularVelocity = Vector3.zero;  //回転の慣性をリセット
-
-                //hp -= abyssdamage;
-                hpb.HPbar(hp, abyssdamage);
-                hp = hpb.HPbar(hp, abyssdamage);
+                hp = hpb.HPbar(hp, abyssdamage);//HPバーにダメージを反映
 
             }
-            else if(hp == 0)
-                PlayerDeth = true;
         }
         else if (!other.CompareTag("Abyss") && abyssflag)
         {
@@ -94,17 +93,14 @@ public class Player : MonoBehaviour
     {
         //プレイヤーの動くスピード
         Vector3 velocity = GetComponent<Rigidbody>().linearVelocity;
-
         //攻撃
-        DamageCalculator.StrongAttack(velocity, sflag);
-        DamageCalculator.LightAttack(velocity, lflag);
         sflag = DamageCalculator.StrongAttack(velocity, sflag);
         lflag = DamageCalculator.LightAttack(velocity, lflag);
         StrongEffect.SetActive(sflag);
         LightEffect.SetActive(lflag);
 
         //ダメージ受けた時に点滅エフェクト
-        isvisible = ef.DamageEffect(isvisible, hp);
+        (isvisible,invincible) = ef.DamageEffect(isvisible, hp);
         PlayerObj.SetActive(isvisible);
 
         //HPが0になると消える
@@ -114,7 +110,7 @@ public class Player : MonoBehaviour
             PlayerDeth = true;
         }
         //ワープ
-        if(wp.WarpFlag == true)
+        if(wp.WarpFlag || abyssflag)
         {
             rb.linearVelocity = Vector3.zero;  //直線の慣性をリセット
             rb.angularVelocity = Vector3.zero;  //回転の慣性をリセット

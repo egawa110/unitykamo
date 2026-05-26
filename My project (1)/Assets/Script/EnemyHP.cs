@@ -8,17 +8,20 @@ public class EnemyHP : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("LightAttack"))
+        if (!enemy.invincible)
         {
-            enemy.enemyhp -= DamageCalculator.AttackDamage;
-            Debug.Log("ìGÇ…ÇPÇOÉ_ÉÅÅ[ÉWó^Ç¶ÇΩ");
+            if (other.CompareTag("LightAttack"))
+            {
+                enemy.enemyhp -= DamageCalculator.AttackDamage;
+                Debug.Log("ìGÇ…ÇPÇOÉ_ÉÅÅ[ÉWó^Ç¶ÇΩ");
 
-        }
-        else if (other.CompareTag("StrongAttack"))
-        {
-            enemy.enemyhp -= DamageCalculator.AttackDamage;
-            Debug.Log("ìGÇ…ÇQÇOÉ_ÉÅÅ[ÉWó^Ç¶ÇΩ");
+            }
+            else if (other.CompareTag("StrongAttack"))
+            {
+                enemy.enemyhp -= DamageCalculator.AttackDamage;
+                Debug.Log("ìGÇ…ÇQÇOÉ_ÉÅÅ[ÉWó^Ç¶ÇΩ");
 
+            }
         }
     }
 }

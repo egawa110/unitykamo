@@ -42,34 +42,26 @@ public class MoveGround : MonoBehaviour
             {
                 x += Speed;
                 //プレイヤーの向き
-                PlayerFunction.PlayerAngle(player.PlayerRotate, (int)angle.w);
-                player.PlayerRotate = PlayerFunction.PlayerAngle(player.PlayerRotate, (int)angle.w);
             }
             if (sKey.isPressed && x > MinTilt)
             {
                 x -= Speed;
-                PlayerFunction.PlayerAngle(player.PlayerRotate, (int)angle.s);
-                player.PlayerRotate = PlayerFunction.PlayerAngle(player.PlayerRotate, (int)angle.s);
 
             }
             if (aKey.isPressed && z < MaxTilt)
             {
                 z += Speed;
-                PlayerFunction.PlayerAngle(player.PlayerRotate, (int)angle.a);
-                player.PlayerRotate = PlayerFunction.PlayerAngle(player.PlayerRotate, (int)angle.a);
 
             }
             if (dKey.isPressed && z > MinTilt)
             {
                 z -= Speed;
-                PlayerFunction.PlayerAngle(player.PlayerRotate, (int)angle.d);
-                player.PlayerRotate = PlayerFunction.PlayerAngle(player.PlayerRotate, (int)angle.d);
 
             }
 
         }
 
-        if (warpswitch.WarpFlag == true || player.abyssflag == true) //プレイヤーがワープ時地面の傾き初期化
+        if (warpswitch.WarpFlag || player.abyssflag) //プレイヤーがワープ時地面の傾き初期化
         {
             x = 0; y = 0; z = 0;
             GRotation = Vector3.zero;
