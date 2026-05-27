@@ -3573,7 +3573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerPos: {x: 0, y: 0, z: 0}
-  PlayerRotate: {x: 0, y: 0, z: 0}
+  pRotate: {x: 0, y: 0, z: 0}
   LightEffect: {fileID: 1991491077}
   StrongEffect: {fileID: 795931529}
   StartPosition: {fileID: 1407850071}
@@ -3581,7 +3581,6 @@ MonoBehaviour:
   hp: 0
   PlayerDeth: 0
   abyssflag: 0
-  enemy: {fileID: 286587099}
   goal: {fileID: 1216348951}
   wp: {fileID: 821879618}
   hpb: {fileID: 1365873977}
@@ -8298,7 +8297,7 @@ Transform:
   m_GameObject: {fileID: 1407850071}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.36025, y: 2.04, z: -0.35050002}
+  m_LocalPosition: {x: -0.36025, y: 2.84, z: -0.35050002}
   m_LocalScale: {x: 0.025, y: 1, z: 0.025}
   m_ConstrainProportionsScale: 0
   m_Children: []

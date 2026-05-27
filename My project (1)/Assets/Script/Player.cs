@@ -1,9 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 public class Player : MonoBehaviour
 {
     public Vector3 PlayerPos;       //プレイヤーの位置
-    public Vector3 PlayerRotate;    //プレイヤーの向き
+    public Vector3 pRotate;    //プレイヤーの向き
+    private Vector3 dir;
+    Quaternion yaw;
+    CharacterController controller;
 
     public GameObject LightEffect;    //弱攻撃
     public GameObject StrongEffect;   //強攻撃
@@ -23,7 +27,7 @@ public class Player : MonoBehaviour
     public bool abyssflag = false;
 
     private Rigidbody rb;
-    public Enemy enemy;
+    //public Enemy enemy;
     public GoalManager goal;
     public WarpSwitch wp;
     public HPBar hpb;
@@ -40,7 +44,7 @@ public class Player : MonoBehaviour
         PlayerPos = StartPosition.transform.position; //スタート地点の位置を取得
         transform.position = PlayerPos;               //プレイヤーの位置
         transform.eulerAngles = Vector3.zero;         //プレイヤーの向き
-        PlayerRotate = transform.eulerAngles;
+        pRotate = transform.eulerAngles;
         hp = (int)m_PStatus.HP;                       //プレイヤーのHP
         PlayerDeth = false;                           //死亡フラグ
         rb = GetComponent<Rigidbody>();               //PlayerのRigidbodyを獲得
@@ -48,6 +52,8 @@ public class Player : MonoBehaviour
         //攻撃を受けた時
         isvisible = true;
         invincible = false;
+        //プレイヤーの向き
+        controller = GetComponent<CharacterController>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -93,6 +99,16 @@ public class Player : MonoBehaviour
     {
         //プレイヤーの動くスピード
         Vector3 velocity = GetComponent<Rigidbody>().linearVelocity;
+        //プレイヤーの向き変更
+        float h = Input.GetAxisRaw("Horizontal"); // A/D
+        float v = Input.GetAxisRaw("Vertical");   // W/S
+        dir = new Vector3(h, 0, v).normalized; //プレイヤーの向きを動かす用
+
+
+        if (dir.magnitude > 0)
+        {
+            yaw = Quaternion.LookRotation(dir);
+        }
         //攻撃
         sflag = DamageCalculator.StrongAttack(velocity, sflag);
         lflag = DamageCalculator.LightAttack(velocity, lflag);
@@ -115,10 +131,11 @@ public class Player : MonoBehaviour
             rb.linearVelocity = Vector3.zero;  //直線の慣性をリセット
             rb.angularVelocity = Vector3.zero;  //回転の慣性をリセット
         }
-        
         PlayerPos = transform.position; //Enemyに渡すPlayerの位置
-        PlayerRotate.x = transform.eulerAngles.x;
-        PlayerRotate.z = transform.eulerAngles.z;
-        transform.eulerAngles = PlayerRotate; //プレイヤーの向き
+        pRotate.x = transform.eulerAngles.x;
+        pRotate.y = yaw.eulerAngles.y;
+        pRotate.z = transform.eulerAngles.z;
+
+        transform.eulerAngles = pRotate; //プレイヤーが浮かないように
     }
 }
