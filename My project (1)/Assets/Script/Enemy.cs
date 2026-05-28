@@ -28,10 +28,11 @@ public class Enemy : MonoBehaviour
     public WarpSwitch wp;
     Effect ef = new Effect(); //ダメージを受けた時に点滅する
     EnemyAttack eattack = new EnemyAttack();
+    public HPBar hpb;
 
     enum EStatus //初期ステータス
     {
-        HP = 150,
+        HP = 50,
         Power = 10,
     }
 

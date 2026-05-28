@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     public Vector3 pRotate;    //プレイヤーの向き
     private Vector3 dir;
     Quaternion yaw;
-    CharacterController controller;
 
     public GameObject LightEffect;    //弱攻撃
     public GameObject StrongEffect;   //強攻撃
@@ -22,6 +21,7 @@ public class Player : MonoBehaviour
     private bool invincible;
 
     public int hp;          //HP
+    public int coin;        //コイン
     public bool PlayerDeth; //死亡フラグ
     private const int abyssdamage = 10;  //奈落に落ちた時のダメージ
     public bool abyssflag = false;
@@ -46,14 +46,13 @@ public class Player : MonoBehaviour
         transform.eulerAngles = Vector3.zero;         //プレイヤーの向き
         pRotate = transform.eulerAngles;
         hp = (int)m_PStatus.HP;                       //プレイヤーのHP
+        coin = 0;                                     //コイン初期化
         PlayerDeth = false;                           //死亡フラグ
         rb = GetComponent<Rigidbody>();               //PlayerのRigidbodyを獲得
         sflag = false; lflag = false;　　　　　　　　 //攻撃エフェクト
         //攻撃を受けた時
         isvisible = true;
         invincible = false;
-        //プレイヤーの向き
-        controller = GetComponent<CharacterController>();
     }
 
     private void OnTriggerEnter(Collider other)
