@@ -6,8 +6,8 @@ using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 public class DamageCalculator : MonoBehaviour
 {
     //ƒvƒŒƒCƒ„[‚ÌƒXƒs[ƒh
-    const float m_lightspeed = 3f;
-    const float m_strongspeed = 7f;
+    const float m_lightspeed = 7f;
+    const float m_strongspeed = 10f;
     //UŒ‚—Í
     public static int AttackDamage;
     enum pstatus
@@ -112,7 +112,7 @@ public class Effect
     private const int maxcount = 2;
     private const int time = 60;
     private const int cooltime = 120;
-    private bool Invincible = false;
+    private bool Invincible = false; //–³“GŽžŠÔ
 
     public (bool, bool) DamageEffect(bool isvisible, int hp)
     {
@@ -133,6 +133,7 @@ public class Effect
                 oldhp = hp;
                 count = 0;
                 second = 0;
+                Debug.Log("–³“G‚ª‰ðœ‚³‚ê‚½");
             }
             else if (second >= time) //‚Q‰ñ“_–Å‚·‚é
             {
