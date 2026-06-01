@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 public class MoveGround : MonoBehaviour
 {
     public Vector3 GRotation;
@@ -73,5 +74,7 @@ public class MoveGround : MonoBehaviour
             GRotation = new Vector3(x, y, z);
             transform.eulerAngles = GRotation;
         }
+        transform.eulerAngles = GRotation;
+
     }
 }

@@ -27,7 +27,6 @@ public class Player : MonoBehaviour
     public bool abyssflag = false;
 
     private Rigidbody rb;
-    //public Enemy enemy;
     public GoalManager goal;
     public WarpSwitch wp;
     public HPBar hpb;
@@ -57,13 +56,10 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!invincible)
+        if (other.CompareTag("ThrustAttack")) //ThrustAttackTagに衝突時
         {
-            if (other.CompareTag("ThrustAttack")) //ThrustAttackTagに衝突時
-            {
-                Debug.Log("１０ダメージ受けた");
-                hp = hpb.HPbar(hp, Enemy.power);
-            }
+            Debug.Log("１０ダメージ受けた");
+            hp = hpb.HPbar(hp, Enemy.power);
         }
         if (other.CompareTag("Goal")) //Goalタグに触れた時
         {
@@ -102,12 +98,11 @@ public class Player : MonoBehaviour
         float h = Input.GetAxisRaw("Horizontal"); // A/D
         float v = Input.GetAxisRaw("Vertical");   // W/S
         dir = new Vector3(h, 0, v).normalized; //プレイヤーの向きを動かす用
-
-
         if (dir.magnitude > 0)
         {
             yaw = Quaternion.LookRotation(dir);
         }
+
         //攻撃
         sflag = DamageCalculator.StrongAttack(velocity, sflag);
         lflag = DamageCalculator.LightAttack(velocity, lflag);
@@ -136,5 +131,7 @@ public class Player : MonoBehaviour
         pRotate.z = transform.eulerAngles.z;
 
         transform.eulerAngles = pRotate; //プレイヤーが浮かないように
+
+
     }
 }
