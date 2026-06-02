@@ -90,7 +90,6 @@ public class Player : MonoBehaviour
             abyssflag = false;
 
         }
-
     }
 
     void Update()
