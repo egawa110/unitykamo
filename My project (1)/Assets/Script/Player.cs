@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 public class Player : MonoBehaviour
 {
+    private Vector3 startpos;
     public Vector3 PlayerPos;       //プレイヤーの位置
     public Vector3 pRotate;    //プレイヤーの向き
     private Vector3 dir;
@@ -24,7 +25,7 @@ public class Player : MonoBehaviour
     public int coin;        //コイン
     public bool PlayerDeth; //死亡フラグ
     private const int abyssdamage = 10;  //奈落に落ちた時のダメージ
-    public bool abyssflag = false;
+    public bool abyssflag;
 
     private Rigidbody rb;
     public GoalManager goal;
@@ -41,6 +42,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         PlayerPos = StartPosition.transform.position; //スタート地点の位置を取得
+        startpos = StartPosition.transform.position;
         transform.position = PlayerPos;               //プレイヤーの位置
         transform.eulerAngles = Vector3.zero;         //プレイヤーの向き
         pRotate = transform.eulerAngles;
@@ -74,7 +76,7 @@ public class Player : MonoBehaviour
             abyssflag = true;
             if (hp != 0) //HPが０じゃない場合はスタート地点に戻す
             {
-                transform.position = StartPosition.transform.position;
+                transform.position = startpos;
                 transform.eulerAngles = Vector3.zero;
                 rb.linearVelocity = Vector3.zero;  //直線の慣性をリセット
                 rb.angularVelocity = Vector3.zero;  //回転の慣性をリセット
@@ -82,10 +84,11 @@ public class Player : MonoBehaviour
 
             }
         }
-        else if (!other.CompareTag("Abyss") && abyssflag)
+        if (other.CompareTag("Startpos"))
         {
             Debug.Log("ステージの上");
             abyssflag = false;
+
         }
 
     }

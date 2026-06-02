@@ -67,7 +67,6 @@ public class MoveGround : MonoBehaviour
             x = 0; y = 0; z = 0;
             GRotation = Vector3.zero;
             transform.eulerAngles = Vector3.zero;
-            player.abyssflag = false;
         }
         else
         {

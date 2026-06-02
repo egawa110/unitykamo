@@ -12,6 +12,7 @@ TagManager:
   - LightAttack
   - StrongAttack
   - Abyss
+  - Startpos
   layers:
   - Default
   - TransparentFX
