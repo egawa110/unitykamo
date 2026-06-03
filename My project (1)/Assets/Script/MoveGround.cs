@@ -17,8 +17,9 @@ public class MoveGround : MonoBehaviour
         d = 90,
     }
 
-    public WarpSwitch warpswitch;
     public Player player;
+    public WarpSwitch[] wp;
+
     void Start()
     {
         x = 0; y = 0; z = 0;
@@ -61,8 +62,17 @@ public class MoveGround : MonoBehaviour
             }
 
         }
-
-        if (warpswitch.WarpFlag || player.abyssflag) //プレイヤーがワープ時地面の傾き初期化
+        //ワープ
+        foreach (var ws in wp)
+        {
+            if (ws.WarpFlag == true)
+            {
+                x = 0; y = 0; z = 0;
+                GRotation = Vector3.zero;
+                transform.eulerAngles = Vector3.zero;
+            }
+        }
+        if (player.abyssflag) //プレイヤーがワープ時地面の傾き初期化
         {
             x = 0; y = 0; z = 0;
             GRotation = Vector3.zero;

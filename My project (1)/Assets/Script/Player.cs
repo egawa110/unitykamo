@@ -29,9 +29,9 @@ public class Player : MonoBehaviour
 
     private Rigidbody rb;
     public GoalManager goal;
-    public WarpSwitch wp;
     public HPBar hpb;
     Effect ef = new Effect(); //ダメージを受けた時に点滅する
+    public WarpSwitch[] wp;
 
     enum m_PStatus
     {
@@ -122,11 +122,20 @@ public class Player : MonoBehaviour
             PlayerDeth = true;
         }
         //ワープ
-        if(wp.WarpFlag || abyssflag)
+        foreach (var ws in wp)
+        {
+            if (ws.WarpFlag == true)
+            {
+                rb.linearVelocity = Vector3.zero;  //直線の慣性をリセット
+                rb.angularVelocity = Vector3.zero;  //回転の慣性をリセット
+            }
+        }
+        if (abyssflag)
         {
             rb.linearVelocity = Vector3.zero;  //直線の慣性をリセット
             rb.angularVelocity = Vector3.zero;  //回転の慣性をリセット
         }
+
         PlayerPos = transform.position; //Enemyに渡すPlayerの位置
         pRotate.x = transform.eulerAngles.x;
         pRotate.y = yaw.eulerAngles.y;

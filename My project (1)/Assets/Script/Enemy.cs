@@ -25,10 +25,10 @@ public class Enemy : MonoBehaviour
     //他のスクリプト呼び出し
     public GameObject EnemyObj;
     public Player player;
-    public WarpSwitch wp;
     Effect ef = new Effect(); //ダメージを受けた時に点滅する
     EnemyAttack eattack = new EnemyAttack();
     public HPBar hpb;
+    public WarpSwitch[] wp;
 
     enum EStatus //初期ステータス
     {
@@ -90,7 +90,15 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
         //ワープ
-        if (wp.WarpFlag == true || player.abyssflag == true)
+        foreach (var ws in wp)
+        {
+            if(ws.WarpFlag == true)
+            {
+                transform.eulerAngles = Vector3.zero;
+                transform.position = new Vector3(m_StartPos.x, posy, m_StartPos.z);
+            }
+        }
+        if (player.abyssflag == true)
         {
             Debug.Log("敵の位置を初期化した");
             transform.eulerAngles = Vector3.zero;

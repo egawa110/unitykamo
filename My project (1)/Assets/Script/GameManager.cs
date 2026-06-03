@@ -64,6 +64,5 @@ public class GameManager : MonoBehaviour
         {
             DethPanel.SetActive(true);
         }
-
     }
 }
