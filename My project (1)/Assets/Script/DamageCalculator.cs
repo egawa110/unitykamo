@@ -81,7 +81,7 @@ public class EnemyAttack
         if (Encounter)
         {
             second++;
-            if (second == Cooldown)
+            if (second == Cooldown) //時間が来たらカウントを進める
             {
                 second = 0;
                 Count++;
@@ -99,6 +99,12 @@ public class EnemyAttack
             }
         }
         return (ap, Encounter, attack, Count);
+    }
+
+    public int TacklAttack()
+    {
+
+        return 0;
     }
 
 }
