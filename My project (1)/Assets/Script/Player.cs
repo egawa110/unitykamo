@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     private bool sflag;
     private bool lflag;
     //点滅
+    public GameObject DamageEffect;
     private bool isvisible;
     private bool invincible;
 
@@ -114,6 +115,8 @@ public class Player : MonoBehaviour
         //ダメージ受けた時に点滅エフェクト
         (isvisible,invincible) = ef.DamageEffect(isvisible, hp);
         PlayerObj.SetActive(isvisible);
+        DamageEffect.SetActive(!isvisible);
+
 
         //HPが0になると消える
         if (hp <= 0)

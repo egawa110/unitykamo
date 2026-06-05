@@ -69,8 +69,13 @@ public class DamageCalculator : MonoBehaviour
 public class EnemyAttack
 {
     //クールタイム
-    const float Cooldown = 2500f;
-    const float Cooldown2 = 625f;
+    //突き攻撃用
+    const float th_Cooldown = 2500f;
+    const float th_Cooldown2 = 625f;
+    //突進攻撃用
+    const float ta_Cooldown = 2500f;
+    const float ta_Cooldown2 = 400f;
+
     private float second = 0;
     public int Count; //攻撃までのカウントダウン
 
@@ -81,7 +86,7 @@ public class EnemyAttack
         if (Encounter)
         {
             second++;
-            if (second == Cooldown) //時間が来たらカウントを進める
+            if (second == th_Cooldown) //時間が来たらカウントを進める
             {
                 second = 0;
                 Count++;
@@ -90,7 +95,7 @@ public class EnemyAttack
             {
                 attack = true;
             }
-            if (Count != 0 && second == Cooldown2)
+            if (Count != 0 && second == th_Cooldown2)
             {
                 Count = 0;
                 attack = false;
@@ -101,10 +106,31 @@ public class EnemyAttack
         return (ap, Encounter, attack, Count);
     }
 
-    public int TacklAttack()
+    public (bool,bool,int, Vector3) TacklAttack(bool Encounter, Vector3 pos, Vector3 forward, float speed)
     {
+        if (Encounter)
+        {
+            second++;
+            if (second == ta_Cooldown) //時間が来たらカウントを進める
+            {
+                second = 0;
+                Count++;
+            }
+            if (Count == 1)
+            {
+                attack = true;
+                pos += forward * speed * Time.deltaTime;
 
-        return 0;
+            }
+            if (Count != 0 && second == ta_Cooldown2)
+            {
+                Count = 0;
+                attack = false;
+                Encounter = false;
+            }
+        }
+        return (Encounter, attack, Count, pos);
+
     }
 
 }

@@ -6,7 +6,7 @@ public class EnemyAnim : MonoBehaviour
     //アニメーション
     private Animator anim = null;
 
-    public Enemy enemy;
+    public ThrustEnemy enemy_thrust;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -21,7 +21,7 @@ public class EnemyAnim : MonoBehaviour
 
         var fKey = current.fKey; //Wキーの入力状態取得
 
-        if (enemy.attack)
+        if (enemy_thrust.attack)
         {
             anim.SetBool("isAttack", true);
 

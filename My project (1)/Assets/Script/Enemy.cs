@@ -5,21 +5,21 @@ using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 public class Enemy : MonoBehaviour
 {
-    private Vector3 Direction;
+    public Vector3 Direction;
     private Vector3 m_StartPos;
     //Yの位置初期化用
     private const float posy = 1;
-    //攻撃用
-    private bool Encounter = false;
-    private bool ap = false;
-    public bool attack = false;
-    public GameObject ThrustAttack; //攻撃オブジェクト
+    ////攻撃用
+    //private bool Encounter = false;
+    //private bool ap = false;
+    //public bool attack = false;
     //クールタイム
-    public int Count; //攻撃までのカウントダウン
+    //public int Count; //攻撃までのカウントダウン
     //ステータス
     public int enemyhp;
     public const int power = 10;
     //点滅用
+    public GameObject DamageEffectObj;
     private bool isvisible = true;
     public bool invincible = false;
     //他のスクリプト呼び出し
@@ -45,44 +45,45 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Encounter = true;
-            Debug.Log("プレイヤーが近くにいる");
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("プレイヤーが離れた");
-        }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        Encounter = true;
+    //        Debug.Log("プレイヤーが近くにいる");
+    //    }
+    //}
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        Debug.Log("プレイヤーが離れた");
+    //    }
 
-    }
+    //}
 
     void Update()
     {
-        if(player.PlayerDeth == false)
-        {
-            if (Encounter && Count == 0)//プレイヤーに向く
-            {
-                //プレイヤーの位置を取得
-                Direction = player.transform.position - transform.position;
-                transform.forward = Direction; //プレイヤーの方を向く
-                ap = true;
-            }
-            if(ap)//プレイヤーのいる方向に攻撃する
-            {
-                (ap, Encounter, attack,Count) = eattack.ThrustAttack(ap, Encounter);
-            }
-            ThrustAttack.SetActive(attack);
-        }
+        //if(player.PlayerDeth == false)
+        //{
+        //    if (Encounter && Count == 0)//プレイヤーに向く
+        //    {
+        //        //プレイヤーの位置を取得
+        //        Direction = player.transform.position - transform.position;
+        //        transform.forward = Direction; //プレイヤーの方を向く
+        //        ap = true;
+        //    }
+        //    if(ap)//プレイヤーのいる方向に攻撃する
+        //    {
+        //        (ap, Encounter, attack,Count) = eattack.ThrustAttack(ap, Encounter);
+        //    }
+        //    ThrustAttack.SetActive(attack);
+        //}
 
         //ダメージ受けた時に点滅エフェクト
         (isvisible, invincible) = ef.DamageEffect(isvisible, enemyhp);
         EnemyObj.SetActive(isvisible);
+        DamageEffectObj.SetActive(!isvisible);
 
         //HPが0になると消える
         if (enemyhp <= 0)
