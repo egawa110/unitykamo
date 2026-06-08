@@ -5,9 +5,16 @@ public class TacklEnemy : MonoBehaviour
     //攻撃用
     private const float speed = 10.0f;
     private bool Encounter = false;   //敵が索敵範囲に入かどうか
+    private bool ap = false;          //攻撃準備
+
     public bool  attack    = false;   //攻撃時のアニメーションとオブジェクト用
     public GameObject tacklAttack;    //攻撃オブジェクト
     public GameObject target;         //ターゲット
+
+    //判定フラグ
+    public bool player_flag = false;
+    public bool wall_flag = false;
+    public bool not_tackl = false;
 
     //クールタイム
     public int Count; //攻撃までのカウントダウン
@@ -41,18 +48,28 @@ public class TacklEnemy : MonoBehaviour
 
     void Update()
     {
+        if (player_flag || wall_flag)
+        {
+            attack = false;
+            Count = 0;
+            ap = false;
+        }
+
         if (player.PlayerDeth == false)
         {
             if (Encounter && Count == 0)//プレイヤーに向く
             {
                 transform.LookAt(target.transform);
+                ap = true;
             }
-            if (Encounter)//プレイヤーのいる方向に攻撃する
+            if (ap && !player_flag && !wall_flag)//プレイヤーのいる方向に攻撃する
             {
-                (Encounter, attack, Count, transform.position) = EAttack.TacklAttack(Encounter, transform.position, transform.forward, speed);
+                (ap, Encounter, attack, Count, transform.position) = EAttack.TacklAttack(ap, Encounter, transform.position, transform.forward, speed, not_tackl);
             }
             tacklAttack.SetActive(attack);
 
         }
+
+
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 public class Player : MonoBehaviour
 {
-    public Vector3 startpos;
+    private Vector3 startpos;
     public Vector3 PlayerPos;       //プレイヤーの位置
     public Vector3 pRotate;    //プレイヤーの向き
     private Vector3 dir;
@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     public bool PlayerDeth; //死亡フラグ
     public bool abyssflag;
 
-    public Rigidbody rb;
+    private Rigidbody rb;
     public GoalManager goal;
     Effect ef = new Effect(); //ダメージを受けた時に点滅する
     public WarpSwitch[] wp;

@@ -1,7 +1,5 @@
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
-using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 public class DamageCalculator : MonoBehaviour
 {
@@ -106,8 +104,15 @@ public class EnemyAttack
         return (ap, Encounter, attack, Count);
     }
 
-    public (bool,bool,int, Vector3) TacklAttack(bool Encounter, Vector3 pos, Vector3 forward, float speed)
+    public (bool, bool,bool,int, Vector3) TacklAttack(bool ap, bool Encounter, Vector3 pos, Vector3 forward, float speed, bool nottackl)
     {
+        if (nottackl == true)
+        {
+            second = 0;
+            Count = 0;
+            attack = false;
+            ap = false;
+        }
         if (Encounter)
         {
             second++;
@@ -127,9 +132,10 @@ public class EnemyAttack
                 Count = 0;
                 attack = false;
                 Encounter = false;
+                ap = false;
             }
         }
-        return (Encounter, attack, Count, pos);
+        return (ap, Encounter, attack, Count, pos);
 
     }
 
