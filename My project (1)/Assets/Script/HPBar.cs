@@ -13,14 +13,10 @@ public class HPBar : MonoBehaviour
         hpSlider.value = maxhp;
     }
 
-    public int HPbar(int hp, int damage) //HPバー
+    public void HPbar(int hp) //HPバー
     {
-        hp -= damage;
-
         hpSlider.value = hp; //スライダーに今のHPを反映
 
         if (hp < 0) hp = 0;
-
-        return hp;
     }
 }

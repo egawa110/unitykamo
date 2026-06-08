@@ -9,12 +9,10 @@ public class ThrustEnemy : MonoBehaviour
     public bool attack = false;
     public GameObject thrustAttack;  //攻撃オブジェクト
     public GameObject target;        //ターゲット
+    public const int power = 10;
 
     //クールタイム
     public int Count; //攻撃までのカウントダウン
-
-    //アニメーション
-    private Animator anim = null;
 
     //他のスクリプト呼び出し
     public Player player;
@@ -23,7 +21,6 @@ public class ThrustEnemy : MonoBehaviour
     private void Start()
     {
         target = GameObject.Find("Player"); //プレイヤーオブジェクトを取得
-        anim = GetComponent<Animator>();
 
     }
 
@@ -59,7 +56,6 @@ public class ThrustEnemy : MonoBehaviour
 
             }
             thrustAttack.SetActive(attack);
-            anim.SetBool("isAttack", attack);
 
         }
     }

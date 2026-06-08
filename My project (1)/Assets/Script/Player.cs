@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 public class Player : MonoBehaviour
 {
-    private Vector3 startpos;
+    public Vector3 startpos;
     public Vector3 PlayerPos;       //プレイヤーの位置
     public Vector3 pRotate;    //プレイヤーの向き
     private Vector3 dir;
@@ -25,12 +25,10 @@ public class Player : MonoBehaviour
     public int hp;          //HP
     public int coin;        //コイン
     public bool PlayerDeth; //死亡フラグ
-    private const int abyssdamage = 10;  //奈落に落ちた時のダメージ
     public bool abyssflag;
 
-    private Rigidbody rb;
+    public Rigidbody rb;
     public GoalManager goal;
-    public HPBar hpb;
     Effect ef = new Effect(); //ダメージを受けた時に点滅する
     public WarpSwitch[] wp;
 
@@ -59,11 +57,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("ThrustAttack")) //ThrustAttackTagに衝突時
-        {
-            Debug.Log("１０ダメージ受けた");
-            hp = hpb.HPbar(hp, Enemy.power);
-        }
         if (other.CompareTag("Goal")) //Goalタグに触れた時
         {
             goal.isGoal = true;
@@ -71,19 +64,6 @@ public class Player : MonoBehaviour
         if (other.CompareTag("HalfGoal")) //HalfGoalタグに触れた時
         {
             goal.GoalCount++;
-        }
-        if (other.CompareTag("Abyss"))
-        {
-            abyssflag = true;
-            if (hp != 0) //HPが０じゃない場合はスタート地点に戻す
-            {
-                transform.position = startpos;
-                transform.eulerAngles = Vector3.zero;
-                rb.linearVelocity = Vector3.zero;  //直線の慣性をリセット
-                rb.angularVelocity = Vector3.zero;  //回転の慣性をリセット
-                hp = hpb.HPbar(hp, abyssdamage);//HPバーにダメージを反映
-
-            }
         }
         if (other.CompareTag("Startpos"))
         {
@@ -117,7 +97,6 @@ public class Player : MonoBehaviour
         PlayerObj.SetActive(isvisible);
         DamageEffect.SetActive(!isvisible);
 
-
         //HPが0になると消える
         if (hp <= 0)
         {
@@ -135,6 +114,8 @@ public class Player : MonoBehaviour
         }
         if (abyssflag)
         {
+            transform.position = startpos;
+            transform.eulerAngles = Vector3.zero;
             rb.linearVelocity = Vector3.zero;  //直線の慣性をリセット
             rb.angularVelocity = Vector3.zero;  //回転の慣性をリセット
         }

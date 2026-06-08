@@ -295,6 +295,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Tree '
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d48d27f2d844a143b2674fad127b3b9, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -320,7 +324,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1775401}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cb2eaf27396cbe4e93af2baaffeb37a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1236,6 +1240,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d48d27f2d844a143b2674fad127b3b9, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1261,7 +1269,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149608755}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cb2eaf27396cbe4e93af2baaffeb37a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1619,6 +1627,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree  (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d48d27f2d844a143b2674fad127b3b9, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1644,7 +1656,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 231336631}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cb2eaf27396cbe4e93af2baaffeb37a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2228,6 +2240,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree  (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d48d27f2d844a143b2674fad127b3b9, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2492,6 +2508,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0d48d27f2d844a143b2674fad127b3b9, type: 3}
       propertyPath: m_Name
       value: Tree  (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d48d27f2d844a143b2674fad127b3b9, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3076,6 +3096,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d48d27f2d844a143b2674fad127b3b9, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3101,7 +3125,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484357299}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cb2eaf27396cbe4e93af2baaffeb37a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3129,7 +3153,7 @@ GameObject:
   - component: {fileID: 491214125}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4709,7 +4733,7 @@ GameObject:
   - component: {fileID: 635097786}
   m_Layer: 0
   m_Name: Wall (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5450,6 +5474,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7994412d7b519f247a674474b301a9de, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5475,7 +5503,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795196360}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cb2eaf27396cbe4e93af2baaffeb37a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5835,8 +5863,8 @@ GameObject:
   - component: {fileID: 825415108}
   - component: {fileID: 825415107}
   m_Layer: 0
-  m_Name: Wall (2)
-  m_TagString: Untagged
+  m_Name: 'Wall '
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6235,6 +6263,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0d48d27f2d844a143b2674fad127b3b9, type: 3}
       propertyPath: m_Name
       value: Tree  (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d48d27f2d844a143b2674fad127b3b9, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6974,6 +7006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b72c495e332b12449f27ad23a9524a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startpos: {x: 0, y: 0, z: 0}
   PlayerPos: {x: 0, y: 0, z: 0}
   pRotate: {x: 0, y: 0, z: 0}
   LightEffect: {fileID: 1780204766}
@@ -6985,8 +7018,8 @@ MonoBehaviour:
   coin: 0
   PlayerDeth: 0
   abyssflag: 0
+  rb: {fileID: 0}
   goal: {fileID: 2110352018}
-  hpb: {fileID: 185861297}
   wp:
   - {fileID: 800656399}
   - {fileID: 2042959652}
@@ -8255,6 +8288,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d48d27f2d844a143b2674fad127b3b9, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8722,7 +8759,7 @@ GameObject:
   - component: {fileID: 1184178579}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9125,7 +9162,7 @@ GameObject:
   - component: {fileID: 1250162585}
   m_Layer: 0
   m_Name: Wall (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9287,6 +9324,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree  (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d48d27f2d844a143b2674fad127b3b9, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9312,7 +9353,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271911259}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cb2eaf27396cbe4e93af2baaffeb37a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -9863,7 +9904,7 @@ GameObject:
   - component: {fileID: 1395181737}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11335,6 +11376,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7994412d7b519f247a674474b301a9de, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11360,7 +11405,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1524481080}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cb2eaf27396cbe4e93af2baaffeb37a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -12385,6 +12430,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree  (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d48d27f2d844a143b2674fad127b3b9, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13196,6 +13245,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d48d27f2d844a143b2674fad127b3b9, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13221,7 +13274,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1931344191}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cb2eaf27396cbe4e93af2baaffeb37a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -13916,6 +13969,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0d48d27f2d844a143b2674fad127b3b9, type: 3}
       propertyPath: m_Name
       value: Tree  (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d48d27f2d844a143b2674fad127b3b9, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

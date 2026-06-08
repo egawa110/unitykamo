@@ -13,7 +13,6 @@ public class EnemyAnim : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         var current = Keyboard.current;  //現在のキーボード情報

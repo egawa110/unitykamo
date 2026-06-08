@@ -5,9 +5,9 @@ public class TacklEnemy : MonoBehaviour
     //攻撃用
     private const float speed = 10.0f;
     private bool Encounter = false;   //敵が索敵範囲に入かどうか
-    public bool attack = false;       //攻撃時のアニメーションとオブジェクト用
+    public bool  attack    = false;   //攻撃時のアニメーションとオブジェクト用
     public GameObject tacklAttack;    //攻撃オブジェクト
-    public GameObject target;        //ターゲット
+    public GameObject target;         //ターゲット
 
     //クールタイム
     public int Count; //攻撃までのカウントダウン
