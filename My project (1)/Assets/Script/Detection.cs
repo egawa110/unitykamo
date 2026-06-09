@@ -5,35 +5,31 @@ public class Detection : MonoBehaviour
 {
     public TacklEnemy enemy;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) //突進中の障害物判定
     {
-        if (other.CompareTag("Player"))
+        if(enemy.Count != 0)//突進中のみ
         {
-            //enemy.player_flag = true;
-            //enemy.not_tackl = true;
-            Debug.Log("プレイヤーが近くにいる");
+            if (other.CompareTag("Player"))
+            {
+                enemy.player_flag = true;
+                Debug.Log("プレイヤーが近くにいる");
+            }
+            if (other.CompareTag("Wall"))
+            {
+                enemy.wall_flag = true;
+            }
         }
-        if (other.CompareTag("Wall"))
-        {
-            enemy.wall_flag = true;
-            enemy.not_tackl = true;
-        }
-
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             enemy.player_flag = false;
-            enemy.not_tackl = false;
 
         }
         if (other.CompareTag("Wall"))
         {
             enemy.wall_flag = false;
-            enemy.not_tackl = false;
         }
-
     }
-
 }

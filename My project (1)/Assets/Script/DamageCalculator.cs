@@ -1,6 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
-
+using System.Collections;
 public class DamageCalculator : MonoBehaviour
 {
     //プレイヤーのスピード
@@ -104,39 +104,37 @@ public class EnemyAttack
         return (ap, Encounter, attack, Count);
     }
 
-    public (bool, bool,bool,int, Vector3) TacklAttack(bool ap, bool Encounter, Vector3 pos, Vector3 forward, float speed, bool nottackl)
+    public (bool, bool,bool,int, Vector3) TacklAttack(bool ap, bool Encounter, int count, Vector3 pos, Vector3 forward, float speed)
     {
-        if (nottackl == true)
+        second++;
+        if(second == 1000)
         {
+            count += 1;
             second = 0;
-            Count = 0;
-            attack = false;
-            ap = false;
         }
-        if (Encounter)
+        if (count == 1)
         {
-            second++;
-            if (second == ta_Cooldown) //時間が来たらカウントを進める
-            {
-                second = 0;
-                Count++;
-            }
-            if (Count == 1)
-            {
-                attack = true;
-                pos += forward * speed * Time.deltaTime;
+            attack = true;
+            pos += forward * speed * Time.deltaTime;
 
-            }
-            if (Count != 0 && second == ta_Cooldown2)
-            {
-                Count = 0;
-                attack = false;
-                Encounter = false;
-                ap = false;
-            }
         }
-        return (ap, Encounter, attack, Count, pos);
+        if(count == 2)
+        {
+            count = 0;
+            attack = false;
+            Encounter = false;
+            ap = false;
+            ResetAttack();
 
+        }
+        return (ap, Encounter, attack, count, pos);
+
+    }
+
+    public void ResetAttack() //secondを初期化
+    {
+        second = 0;
+        attack = false;
     }
 
 }
@@ -188,3 +186,4 @@ public class Effect
     }
 
 }
+
