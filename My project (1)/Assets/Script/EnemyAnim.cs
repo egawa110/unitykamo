@@ -22,12 +22,12 @@ public class EnemyAnim : MonoBehaviour
 
         if (enemy_thrust.attack)
         {
-            anim.SetBool("isAttack", true);
+            anim.SetBool("thrustAttack", true);
 
         }
         else
         {
-            anim.SetBool("isAttack", false);
+            anim.SetBool("thrustAttack", false);
 
         }
 

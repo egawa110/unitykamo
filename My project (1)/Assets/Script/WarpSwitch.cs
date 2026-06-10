@@ -1,15 +1,24 @@
 using UnityEngine;
-
+using System.Collections;
 public class WarpSwitch : MonoBehaviour
 {
     Vector3 WarpPos;
     Vector3 WarpRotation; //ワープした時のオブジェクトの傾き
-    public GameObject WarpPosition;
+    public GameObject WarpPosition; //ワープ先のポジション
+    public GameObject warpEffect;
     public bool WarpFlag;
+    private bool effectflag;
     private float CoolTime;
     private float Count;
 
     public Player player;
+    IEnumerator WarpCoroutine()
+    {
+        effectflag = true;
+        yield return new WaitForSeconds(2); //　１０秒まつ
+        effectflag = false;
+    }
+
     void Start()
     {
         WarpPos = Vector3.zero; WarpRotation = Vector3.zero;
@@ -30,6 +39,7 @@ public class WarpSwitch : MonoBehaviour
     {
         WarpPos = WarpPosition.transform.position;  //ワープ先の位置を取得
         WarpRotation = WarpPosition.transform.eulerAngles;
+        warpEffect.SetActive(effectflag);
 
         if (WarpFlag == true)
         {
@@ -37,7 +47,7 @@ public class WarpSwitch : MonoBehaviour
             Debug.Log("ワープスイッチを押した");
             player.transform.eulerAngles = WarpRotation;
             player.transform.position = WarpPos;  //プレイヤーをワープ
-
+            StartCoroutine(WarpCoroutine());
             if (Count == CoolTime)
             {
                 Count = 0f;

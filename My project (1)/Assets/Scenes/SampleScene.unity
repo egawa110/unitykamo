@@ -3424,14 +3424,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c90b579c5a0138469973e178d8ebad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: 0
-  ThrustAttack: {fileID: 885616701}
-  Count: 0
+  Direction: {x: 0, y: 0, z: 0}
   enemyhp: 0
+  DamageEffectObj: {fileID: 0}
   invincible: 0
+  DethEffect: {fileID: 0}
+  enemyDeth: 0
   EnemyObj: {fileID: 1967792684}
   player: {fileID: 1278085507}
-  hpb: {fileID: 0}
   wp:
   - {fileID: 0}
 --- !u!54 &612364924
@@ -4042,7 +4042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8414e5ef0e28b434fbcbaa82ee4c38ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 975124906}
+  enemy_thrust: {fileID: 0}
 --- !u!1 &774699510
 GameObject:
   m_ObjectHideFlags: 0
@@ -5362,7 +5362,7 @@ GameObject:
   - component: {fileID: 895565496}
   - component: {fileID: 895565495}
   m_Layer: 0
-  m_Name: Enemy (2)
+  m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5380,14 +5380,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c90b579c5a0138469973e178d8ebad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: 0
-  ThrustAttack: {fileID: 163529601}
-  Count: 0
+  Direction: {x: 0, y: 0, z: 0}
   enemyhp: 0
+  DamageEffectObj: {fileID: 0}
   invincible: 0
+  DethEffect: {fileID: 0}
+  enemyDeth: 0
   EnemyObj: {fileID: 1610180057}
   player: {fileID: 1278085507}
-  hpb: {fileID: 0}
   wp:
   - {fileID: 0}
 --- !u!54 &895565496
@@ -5957,14 +5957,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c90b579c5a0138469973e178d8ebad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: 0
-  ThrustAttack: {fileID: 1534076324}
-  Count: 0
+  Direction: {x: 0, y: 0, z: 0}
   enemyhp: 0
+  DamageEffectObj: {fileID: 0}
   invincible: 0
+  DethEffect: {fileID: 0}
+  enemyDeth: 0
   EnemyObj: {fileID: 746120059}
   player: {fileID: 1278085507}
-  hpb: {fileID: 0}
   wp:
   - {fileID: 0}
 --- !u!54 &975124907
@@ -6510,7 +6510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8414e5ef0e28b434fbcbaa82ee4c38ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1904519091}
+  enemy_thrust: {fileID: 0}
 --- !u!64 &1082743463
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7290,12 +7290,12 @@ MonoBehaviour:
   StrongEffect: {fileID: 1935530889}
   StartPosition: {fileID: 2007705257}
   PlayerObj: {fileID: 143622067}
+  DamageEffect: {fileID: 0}
   hp: 0
   coin: 0
   PlayerDeth: 0
   abyssflag: 0
   goal: {fileID: 1530003529}
-  hpb: {fileID: 68139331}
   wp:
   - {fileID: 0}
 --- !u!4 &1278085508
@@ -8903,7 +8903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8414e5ef0e28b434fbcbaa82ee4c38ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 895565495}
+  enemy_thrust: {fileID: 0}
 --- !u!1 &1636388607
 GameObject:
   m_ObjectHideFlags: 0
@@ -8938,14 +8938,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c90b579c5a0138469973e178d8ebad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: 0
-  ThrustAttack: {fileID: 1791520069}
-  Count: 0
+  Direction: {x: 0, y: 0, z: 0}
   enemyhp: 0
+  DamageEffectObj: {fileID: 0}
   invincible: 0
+  DethEffect: {fileID: 0}
+  enemyDeth: 0
   EnemyObj: {fileID: 1126306480}
   player: {fileID: 1278085507}
-  hpb: {fileID: 0}
   wp:
   - {fileID: 0}
 --- !u!54 &1636388609
@@ -10873,14 +10873,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c90b579c5a0138469973e178d8ebad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: 0
-  ThrustAttack: {fileID: 1787528928}
-  Count: 0
+  Direction: {x: 0, y: 0, z: 0}
   enemyhp: 0
+  DamageEffectObj: {fileID: 0}
   invincible: 0
+  DethEffect: {fileID: 0}
+  enemyDeth: 0
   EnemyObj: {fileID: 1082743459}
   player: {fileID: 1278085507}
-  hpb: {fileID: 0}
   wp:
   - {fileID: 0}
 --- !u!54 &1904519092
@@ -11519,7 +11519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8414e5ef0e28b434fbcbaa82ee4c38ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 612364923}
+  enemy_thrust: {fileID: 0}
 --- !u!1 &1976771938
 GameObject:
   m_ObjectHideFlags: 0
@@ -12595,7 +12595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8414e5ef0e28b434fbcbaa82ee4c38ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1904519091}
+  enemy_thrust: {fileID: 0}
 --- !u!1 &2057579696
 GameObject:
   m_ObjectHideFlags: 0
@@ -13160,7 +13160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8414e5ef0e28b434fbcbaa82ee4c38ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 2146429564}
+  enemy_thrust: {fileID: 0}
 --- !u!1 &2146429563
 GameObject:
   m_ObjectHideFlags: 0
@@ -13195,14 +13195,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c90b579c5a0138469973e178d8ebad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: 0
-  ThrustAttack: {fileID: 1999403192}
-  Count: 0
+  Direction: {x: 0, y: 0, z: 0}
   enemyhp: 0
+  DamageEffectObj: {fileID: 0}
   invincible: 0
+  DethEffect: {fileID: 0}
+  enemyDeth: 0
   EnemyObj: {fileID: 2140945201}
   player: {fileID: 1278085507}
-  hpb: {fileID: 0}
   wp:
   - {fileID: 0}
 --- !u!54 &2146429565

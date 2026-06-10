@@ -21,7 +21,7 @@ public class ThrustEnemy : MonoBehaviour
     private void Start()
     {
         target = GameObject.Find("Player"); //プレイヤーオブジェクトを取得
-
+        attack = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -57,6 +57,12 @@ public class ThrustEnemy : MonoBehaviour
             }
             thrustAttack.SetActive(attack);
 
+        }
+        //死亡
+        if (enemy.enemyDeth)
+        {
+            Encounter = false;
+            attack = false;
         }
     }
 }

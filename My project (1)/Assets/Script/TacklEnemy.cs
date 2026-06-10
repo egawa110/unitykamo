@@ -7,7 +7,7 @@ public class TacklEnemy : MonoBehaviour
     private bool Encounter = false;   //敵が索敵範囲に入かどうか
     private bool ap = false;          //攻撃準備
 
-    public bool  attack    = false;   //攻撃時のアニメーションとオブジェクト用
+    public bool  attack    = false;   //攻撃のアニメーションとオブジェクト用
     public GameObject tacklAttack;    //攻撃オブジェクト
     public GameObject target;         //ターゲット
 
@@ -26,6 +26,7 @@ public class TacklEnemy : MonoBehaviour
     private void Start()
     {
         target = GameObject.Find("Player"); //プレイヤーオブジェクトを取得
+        attack = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -67,6 +68,12 @@ public class TacklEnemy : MonoBehaviour
                 EAttack.ResetAttack();
             }
             tacklAttack.SetActive(attack);
+        }
+        //死亡
+        if (enemy.enemyDeth)
+        {
+            Encounter = false;
+            attack = false;
         }
 
 

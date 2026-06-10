@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class BreakWall : MonoBehaviour
 {
@@ -18,16 +19,21 @@ public class BreakWall : MonoBehaviour
             m_HP -= DamageCalculator.AttackDamage;
             Debug.Log("ï«Ç…ÇPÇOÉ_ÉÅÅ[ÉWó^Ç¶ÇΩ");
 
+
         }
         if (other.CompareTag("StrongAttack"))
         {
             m_HP -= DamageCalculator.AttackDamage;
             Debug.Log("ï«Ç…ÇQÇOÉ_ÉÅÅ[ÉWó^Ç¶ÇΩ");
+
         }
     }
 
     void Update()
     {
-        if (m_HP <= 0) Destroy(gameObject); 
+        if (m_HP <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
