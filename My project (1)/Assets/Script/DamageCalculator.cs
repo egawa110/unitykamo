@@ -78,8 +78,9 @@ public class EnemyAttack
     public int Count; //攻撃までのカウントダウン
 
     bool attack = false;
+    bool apeffect = false;
 
-    public (bool, bool, bool, int) ThrustAttack(bool ap, bool Encounter)
+    public (bool, bool, bool, bool, int) ThrustAttack(bool ap, bool Encounter)
     {
         if (Encounter)
         {
@@ -89,9 +90,14 @@ public class EnemyAttack
                 second = 0;
                 Count++;
             }
+            if(second == 2000)
+            {
+                apeffect = true;
+            }
             if (Count == 1)
             {
                 attack = true;
+                apeffect = false;
             }
             if (Count != 0 && second == th_Cooldown2)
             {
@@ -101,10 +107,10 @@ public class EnemyAttack
                 Encounter = false;
             }
         }
-        return (ap, Encounter, attack, Count);
+        return (ap, Encounter, attack, apeffect, Count);
     }
 
-    public (bool, bool,bool,int, Vector3) TacklAttack(bool ap, bool Encounter, int count, Vector3 pos, Vector3 forward, float speed)
+    public (bool, bool,bool, bool, int, Vector3) TacklAttack(bool ap, bool Encounter, int count, Vector3 pos, Vector3 forward, float speed)
     {
         second++;
         if(second == 1000)
@@ -112,9 +118,14 @@ public class EnemyAttack
             count += 1;
             second = 0;
         }
+        if (second >= 500)
+        {
+            apeffect = true;
+        }
         if (count == 1)
         {
             attack = true;
+            apeffect = false;
             pos += forward * speed * Time.deltaTime;
 
         }
@@ -127,7 +138,7 @@ public class EnemyAttack
             ResetAttack();
 
         }
-        return (ap, Encounter, attack, count, pos);
+        return (ap, Encounter, attack, apeffect, count, pos);
 
     }
 
