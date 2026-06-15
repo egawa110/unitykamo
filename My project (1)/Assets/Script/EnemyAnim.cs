@@ -6,7 +6,8 @@ public class EnemyAnim : MonoBehaviour
     //アニメーション
     private Animator anim = null;
 
-    public ThrustEnemy enemy_thrust;
+    public ThrustEnemy[] thrust_enemy;
+    public TacklEnemy[] tackl_enemy;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -15,21 +16,31 @@ public class EnemyAnim : MonoBehaviour
 
     void Update()
     {
-        var current = Keyboard.current;  //現在のキーボード情報
-        if (current == null) return;     //キーボード接続チェック
-
-        var fKey = current.fKey; //Wキーの入力状態取得
-
-        if (enemy_thrust.attack)
+        //突き攻撃アニメーション
+        foreach (var en_th in thrust_enemy)
         {
-            anim.SetBool("thrustAttack", true);
-
+            if (en_th.attack)
+            {
+                anim.SetBool("thrustAttack", true);
+            }
+            else
+            {
+                anim.SetBool("thrustAttack", false);
+            }
         }
-        else
+        //タックル攻撃アニメーション
+        foreach (var en_ta in tackl_enemy)
         {
-            anim.SetBool("thrustAttack", false);
-
+            if (en_ta.attack)
+            {
+                anim.SetBool("TacklAttack", true);
+            }
+            else
+            {
+                anim.SetBool("TacklAttack", false);
+            }
         }
+
 
     }
 }

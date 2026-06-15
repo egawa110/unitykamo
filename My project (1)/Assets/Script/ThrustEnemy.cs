@@ -7,7 +7,9 @@ public class ThrustEnemy : MonoBehaviour
     private bool Encounter = false;
     private bool ap = false;
     public bool attack = false;
+    public bool apeffect = false;
     public GameObject thrustAttack;  //攻撃オブジェクト
+    public GameObject apeffectObj;
     public GameObject target;        //ターゲット
     public const int power = 10;
 
@@ -52,10 +54,11 @@ public class ThrustEnemy : MonoBehaviour
             }
             if (Encounter)//プレイヤーのいる方向に攻撃する
             {
-                (ap, Encounter, attack, Count) = EAttack.ThrustAttack(ap, Encounter);
+                (ap, Encounter, attack, apeffect, Count) = EAttack.ThrustAttack(ap, Encounter);
 
             }
             thrustAttack.SetActive(attack);
+            apeffectObj.SetActive(apeffect);
 
         }
         //死亡

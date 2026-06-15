@@ -7,8 +7,10 @@ public class TacklEnemy : MonoBehaviour
     private bool Encounter = false;   //敵が索敵範囲に入かどうか
     private bool ap = false;          //攻撃準備
 
-    public bool  attack    = false;   //攻撃のアニメーションとオブジェクト用
+    public bool  attack    = false;   //攻撃のアニメーションとオブジェクト用]
+    public bool apeffect   = false;   //攻撃前のエフェクト
     public GameObject tacklAttack;    //攻撃オブジェクト
+    public GameObject apeffectObj;    //攻撃前のエフェクト
     public GameObject target;         //ターゲット
 
     //判定フラグ
@@ -57,7 +59,7 @@ public class TacklEnemy : MonoBehaviour
             }
             if (ap && !player_flag && !wall_flag)//突進
             {
-                (ap, Encounter, attack, Count, transform.position) = EAttack.TacklAttack(ap, Encounter, Count, transform.position, transform.forward, speed);
+                (ap, Encounter, attack, apeffect, Count, transform.position) = EAttack.TacklAttack(ap, Encounter, Count, transform.position, transform.forward, speed);
             }
             if (ap && player_flag || wall_flag) //障害物に当たると止まる
             {
@@ -68,6 +70,7 @@ public class TacklEnemy : MonoBehaviour
                 EAttack.ResetAttack();
             }
             tacklAttack.SetActive(attack);
+            apeffectObj.SetActive(apeffect);
         }
         //死亡
         if (enemy.enemyDeth)
