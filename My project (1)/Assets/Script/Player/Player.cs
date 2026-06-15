@@ -31,7 +31,6 @@ public class Player : MonoBehaviour
     public GoalManager goal;
     Effect ef = new Effect(); //ダメージを受けた時に点滅する
     public WarpSwitch[] wp;
-
     enum m_PStatus
     {
         HP = 100,         //HP
@@ -41,7 +40,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         PlayerPos = StartPosition.transform.position; //スタート地点の位置を取得
-        startpos = StartPosition.transform.position;
         transform.position = PlayerPos;               //プレイヤーの位置
         transform.eulerAngles = Vector3.zero;         //プレイヤーの向き
         pRotate = transform.eulerAngles;
@@ -69,7 +67,6 @@ public class Player : MonoBehaviour
         {
             Debug.Log("ステージの上");
             abyssflag = false;
-
         }
     }
 
@@ -114,7 +111,11 @@ public class Player : MonoBehaviour
         }
         if (abyssflag)
         {
-            transform.position = startpos;
+            //スタート地点 ＆ 復帰地点
+            PlayerPos = StartPosition.transform.position; //スタート地点の位置を取得
+            transform.position = PlayerPos;               //プレイヤーの位置
+
+            //transform.position = startpos;
             transform.eulerAngles = Vector3.zero;
             rb.linearVelocity = Vector3.zero;  //直線の慣性をリセット
             rb.angularVelocity = Vector3.zero;  //回転の慣性をリセット

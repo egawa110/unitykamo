@@ -4,9 +4,10 @@ public class WarpSwitch : MonoBehaviour
 {
     Vector3 WarpPos;
     Vector3 WarpRotation; //ワープした時のオブジェクトの傾き
+    public Vector3 startpos; //ワープを踏んだらスタート位置を変更
     public GameObject WarpPosition; //ワープ先のポジション
+    public GameObject[] StartPosition;
     public bool WarpFlag;
-    private bool effectflag;
     private float CoolTime;
     private float Count;
 
@@ -35,7 +36,12 @@ public class WarpSwitch : MonoBehaviour
 
         if (WarpFlag == true)
         {
-            Count++;
+            foreach (var pstart in StartPosition)
+            {
+                pstart.transform.position = startpos;
+            }
+
+                Count++;
             Debug.Log("ワープスイッチを押した");
             player.transform.eulerAngles = WarpRotation;
             player.transform.position = WarpPos;  //プレイヤーをワープ
