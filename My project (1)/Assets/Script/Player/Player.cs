@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 public class Player : MonoBehaviour
 {
-    private Vector3 startpos;
     public Vector3 PlayerPos;       //プレイヤーの位置
     public Vector3 pRotate;    //プレイヤーの向き
     private Vector3 dir;
@@ -21,8 +20,12 @@ public class Player : MonoBehaviour
     public GameObject DamageEffect;
     private bool isvisible;
     private bool invincible;
-
-    public int hp;          //HP
+    //ステータス------------
+    public int hp;   //HP
+    public int strongPower; //強攻撃
+    public int lightPower;  //弱攻撃
+    public int defense;     //防御
+    //-----------------------
     public int coin;        //コイン
     public bool PlayerDeth; //死亡フラグ
     public bool abyssflag;
@@ -34,16 +37,26 @@ public class Player : MonoBehaviour
     enum m_PStatus
     {
         HP = 100,         //HP
-        Defense = 30,     //防御力
-    }
+        lightpower = 10, //弱攻撃
+        strongpower = 20, //強攻撃
+        Defense = 0,
 
+    }
+    void Awake() //Startより早く呼ばれる
+    {
+        hp = (int)m_PStatus.HP + StatusButton.shop_hp;                               //hp
+
+    }
     void Start()
     {
         PlayerPos = StartPosition.transform.position; //スタート地点の位置を取得
         transform.position = PlayerPos;               //プレイヤーの位置
         transform.eulerAngles = Vector3.zero;         //プレイヤーの向き
         pRotate = transform.eulerAngles;
-        hp = (int)m_PStatus.HP;                       //プレイヤーのHP
+        //プレイヤーステータス----------------------
+        strongPower = (int)m_PStatus.strongpower + StatusButton.shop_strongPower;    //強攻撃
+        lightPower = (int)m_PStatus.lightpower + StatusButton.shop_lightPower;       //弱攻撃
+        //------------------------------------------
         coin = 0;                                     //コイン初期化
         PlayerDeth = false;                           //死亡フラグ
         rb = GetComponent<Rigidbody>();               //PlayerのRigidbodyを獲得
@@ -84,8 +97,8 @@ public class Player : MonoBehaviour
         }
 
         //攻撃
-        sflag = DamageCalculator.StrongAttack(velocity, sflag);
-        lflag = DamageCalculator.LightAttack(velocity, lflag);
+        sflag = DamageCalculator.StrongAttack(velocity, sflag, strongPower);
+        lflag = DamageCalculator.LightAttack(velocity, lflag, lightPower);
         StrongEffect.SetActive(sflag);
         LightEffect.SetActive(lflag);
 

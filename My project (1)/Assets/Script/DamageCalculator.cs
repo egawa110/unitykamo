@@ -19,14 +19,14 @@ public class DamageCalculator : MonoBehaviour
         AttackDamage = 0;
     }
 
-    public static bool StrongAttack(Vector3 velocity, bool strongflag) //‹­UŒ‚
+    public static bool StrongAttack(Vector3 velocity, bool strongflag, int power) //‹­UŒ‚
     {
         //‹­UŒ‚
         if (Mathf.Abs(velocity.x) > m_strongspeed ||
             Mathf.Abs(velocity.z) > m_strongspeed)
         {
             strongflag = true;
-            AttackDamage = (int)pstatus.strongpower;
+            AttackDamage = power;
         }
         else if (Mathf.Abs(velocity.x) > m_lightspeed ||
                  Mathf.Abs(velocity.z) > m_lightspeed)
@@ -40,7 +40,7 @@ public class DamageCalculator : MonoBehaviour
         }
         return strongflag;
     }
-    public static bool LightAttack(Vector3 velocity, bool lightflag) //ŽãUŒ‚
+    public static bool LightAttack(Vector3 velocity, bool lightflag, int power) //ŽãUŒ‚
     {
         //‹­UŒ‚
         if (Mathf.Abs(velocity.x) > m_strongspeed ||
@@ -51,7 +51,7 @@ public class DamageCalculator : MonoBehaviour
             Mathf.Abs(velocity.z) > m_lightspeed)
         {
             lightflag = true;
-            AttackDamage = (int)pstatus.strongpower;
+            AttackDamage = power;
         }
         else
         {

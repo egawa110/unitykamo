@@ -29431,6 +29431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 1365873976}
+  player: {fileID: 1876180049}
 --- !u!1 &1407850071
 GameObject:
   m_ObjectHideFlags: 0
@@ -31668,6 +31669,9 @@ MonoBehaviour:
   PlayerObj: {fileID: 613565464}
   DamageEffect: {fileID: 141150801}
   hp: 0
+  strongPower: 0
+  lightPower: 0
+  defense: 0
   coin: 0
   PlayerDeth: 0
   abyssflag: 0

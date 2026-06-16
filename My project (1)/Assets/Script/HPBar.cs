@@ -3,14 +3,18 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 public class HPBar : MonoBehaviour
 {
-    private const int maxhp = 100;
+    int maxhp;
 
     public Slider hpSlider; //UIスライダー
+    public Player player;
 
     private void Start()
     {
+        maxhp = player.hp;
         hpSlider.maxValue = maxhp;
         hpSlider.value = maxhp;
+        Debug.Log(maxhp);
+
     }
 
     public void HPbar(int hp) //HPバー
