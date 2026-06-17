@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     private const float posy = 1;
     //ステータス
     public int enemyhp;
+    public int money;
     //点滅用
     public GameObject DamageEffectObj;
     private bool isvisible = true;
@@ -43,7 +44,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         m_StartPos = transform.position; //最初の位置
-        enemyhp = (int)EStatus.HP; //ステータスの初期化
+        //enemyhp = (int)EStatus.HP; //ステータスの初期化
         Direction = Vector3.zero; //回転の初期化
         transform.eulerAngles = Direction;
         enemyDeth = false;

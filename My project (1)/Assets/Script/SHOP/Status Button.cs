@@ -6,6 +6,7 @@ public class StatusButton : MonoBehaviour
     public static int shop_hp;
     public static int shop_strongPower;
     public static int shop_lightPower;
+    public static int money;
 
     public Text[] hpText;
     public Text[] strongPowerText;

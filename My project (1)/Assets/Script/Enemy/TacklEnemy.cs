@@ -7,6 +7,9 @@ public class TacklEnemy : MonoBehaviour
     private bool Encounter = false;   //敵が索敵範囲に入かどうか
     private bool ap = false;          //攻撃準備
 
+    public const int hp = 50;
+    public const int tackl_money = 30;
+
     public bool  attack    = false;   //攻撃のアニメーションとオブジェクト用]
     public bool apeffect   = false;   //攻撃前のエフェクト
     public GameObject tacklAttack;    //攻撃オブジェクト
@@ -29,6 +32,7 @@ public class TacklEnemy : MonoBehaviour
     {
         target = GameObject.Find("Player"); //プレイヤーオブジェクトを取得
         attack = false;
+        enemy.enemyhp = hp;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -77,6 +81,7 @@ public class TacklEnemy : MonoBehaviour
         {
             Encounter = false;
             attack = false;
+            StatusButton.money += tackl_money;
         }
 
 

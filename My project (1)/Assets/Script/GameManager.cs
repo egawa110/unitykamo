@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     //タイマーとかHPとか
     public GameObject TimePanel;
     public Text TimeText;
+    public Text Money;
     private float TimeCount;
     //ゴール時
     public GameObject GoalPanel;
@@ -37,6 +38,8 @@ public class GameManager : MonoBehaviour
             //タイマー
             TimeCount += Time.deltaTime;
             TimeText.text = "Time : " + TimeCount. ToString ("F1");
+            //所持金
+            Money.text = "G:" + StatusButton.money;
         }
 
         //ポーズ画面

@@ -13,6 +13,10 @@ public class ThrustEnemy : MonoBehaviour
     public GameObject target;        //ターゲット
     public const int power = 10;
 
+    public const int hp = 30;
+    public const int thrust_money = 30;
+    public GameObject money;
+
     //クールタイム
     public int Count; //攻撃までのカウントダウン
 
@@ -24,6 +28,8 @@ public class ThrustEnemy : MonoBehaviour
     {
         target = GameObject.Find("Player"); //プレイヤーオブジェクトを取得
         attack = false;
+        enemy.enemyhp = hp;
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -66,6 +72,8 @@ public class ThrustEnemy : MonoBehaviour
         {
             Encounter = false;
             attack = false;
+            enemy.money = thrust_money;
+            money.SetActive(true);
         }
     }
 }
