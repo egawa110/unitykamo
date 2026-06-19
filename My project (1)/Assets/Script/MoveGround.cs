@@ -18,7 +18,7 @@ public class MoveGround : MonoBehaviour
     }
 
     public Player player;
-    public WarpSwitch[] wp;
+    //public WarpSwitch[] wp;
 
     void Start()
     {
@@ -63,20 +63,27 @@ public class MoveGround : MonoBehaviour
 
         }
         //ワープ
-        foreach (var ws in wp)
-        {
-            if (ws.WarpFlag == true)
-            {
-                x = 0; y = 0; z = 0;
-                GRotation = Vector3.zero;
-                transform.eulerAngles = Vector3.zero;
-            }
-        }
-        if (player.abyssflag) //プレイヤーがワープ時地面の傾き初期化
+        //foreach (var ws in wp)
+        //{
+        //    if (ws.WarpFlag == true)
+        //    {
+        //        x = 0; y = 0; z = 0;
+        //        GRotation = Vector3.zero;
+        //        transform.eulerAngles = Vector3.zero;
+        //    }
+        //}
+        //if (player.abyssflag) //プレイヤーがワープ時地面の傾き初期化
+        //{
+        //    x = 0; y = 0; z = 0;
+        //    GRotation = Vector3.zero;
+        //    transform.eulerAngles = Vector3.zero;
+        //}
+        if(Player.pos_reset_flag == true)
         {
             x = 0; y = 0; z = 0;
             GRotation = Vector3.zero;
             transform.eulerAngles = Vector3.zero;
+
         }
         else
         {

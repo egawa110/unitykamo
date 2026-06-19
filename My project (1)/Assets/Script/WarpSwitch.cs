@@ -49,6 +49,7 @@ public class WarpSwitch : MonoBehaviour
             {
                 Count = 0f;
                 WarpFlag = false;
+                Player.pos_reset_flag = false;
             }
         }
     }

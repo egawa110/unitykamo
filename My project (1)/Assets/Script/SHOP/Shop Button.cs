@@ -57,5 +57,6 @@ public class ShopButton : MonoBehaviour
         foreach (var sp in StatusPanel)
             sp.gameObject.SetActive(status_flag);
 
+
     }
 }

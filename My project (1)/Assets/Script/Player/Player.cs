@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     public int coin;        //コイン
     public bool PlayerDeth; //死亡フラグ
     public bool abyssflag;
+    public static bool pos_reset_flag;
 
     private Rigidbody rb;
     public GoalManager goal;
@@ -64,6 +65,8 @@ public class Player : MonoBehaviour
         //攻撃を受けた時
         isvisible = true;
         invincible = false;
+        //リセット
+        pos_reset_flag = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -80,6 +83,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("ステージの上");
             abyssflag = false;
+            pos_reset_flag = false;
         }
     }
 
@@ -120,6 +124,7 @@ public class Player : MonoBehaviour
             {
                 rb.linearVelocity = Vector3.zero;  //直線の慣性をリセット
                 rb.angularVelocity = Vector3.zero;  //回転の慣性をリセット
+                pos_reset_flag = true;
             }
         }
         if (abyssflag)
@@ -132,6 +137,7 @@ public class Player : MonoBehaviour
             transform.eulerAngles = Vector3.zero;
             rb.linearVelocity = Vector3.zero;  //直線の慣性をリセット
             rb.angularVelocity = Vector3.zero;  //回転の慣性をリセット
+            pos_reset_flag = true;
         }
 
         PlayerPos = transform.position; //Enemyに渡すPlayerの位置

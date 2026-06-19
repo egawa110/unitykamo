@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
     public Player player;
     Effect ef = new Effect(); //ダメージを受けた時に点滅する
     //public HPBar hpb;
-    public WarpSwitch[] wp;
+    //public WarpSwitch[] wp;
     bool f;
 
     enum EStatus //初期ステータス
@@ -81,19 +81,26 @@ public class Enemy : MonoBehaviour
             StartCoroutine(DethCoroutine());
         }
         //ワープ
-        foreach (var ws in wp)
-        {
-            if(ws.WarpFlag == true)
-            {
-                transform.eulerAngles = Vector3.zero;
-                transform.position = new Vector3(m_StartPos.x, posy, m_StartPos.z);
-            }
-        }
-        if (player.abyssflag == true)
+        //foreach (var ws in wp)
+        //{
+        //    if(ws.WarpFlag == true)
+        //    {
+        //        transform.eulerAngles = Vector3.zero;
+        //        transform.position = new Vector3(m_StartPos.x, posy, m_StartPos.z);
+        //    }
+        //}
+        //if (player.abyssflag == true)
+        //{
+        //    Debug.Log("敵の位置を初期化した");
+        //    transform.eulerAngles = Vector3.zero;
+        //    transform.position = new Vector3(m_StartPos.x, posy, m_StartPos.z);
+        //}
+        if(Player.pos_reset_flag == true)
         {
             Debug.Log("敵の位置を初期化した");
             transform.eulerAngles = Vector3.zero;
             transform.position = new Vector3(m_StartPos.x, posy, m_StartPos.z);
+
         }
     }
 }

@@ -7,30 +7,59 @@ public class StatusButton : MonoBehaviour
     public static int shop_strongPower;
     public static int shop_lightPower;
     public static int money;
+    public static int hp_price = 100;
+    public static int stp_price = 100;
+    public static int lgp_price = 100;
 
     public Text[] hpText;
     public Text[] strongPowerText;
     public Text[] lightPowerText;
 
+    public Text[] hp_priceText;
+    public Text[] stp_priceText;
+    public Text[] lgp_priceText;
+
+
 
     public void Status_hp()
     {
-        shop_hp += 10;
+        if(money >= hp_price)
+        {
+            shop_hp += 10;
+            money -= hp_price;
+            hp_price += 50;
+
+        }
     }
 
     public void Status_strongpower()
     {
-        shop_strongPower += 10;
+        if (money >= stp_price)
+        {
+            shop_strongPower += 10;
+            money -= stp_price;
+            stp_price += 50;
+
+        }
+
 
     }
 
     public void Status_lightpower()
     {
-        shop_lightPower += 10;
+        if (money >= lgp_price)
+        {
+            shop_lightPower += 10;
+            money -= lgp_price;
+            lgp_price += 50;
+
+        }
+
     }
 
     private void Update()
     {
+        //強化
         foreach (var hp in hpText)
         {
             hp.text = "体力　 +" + shop_hp;
@@ -46,6 +75,23 @@ public class StatusButton : MonoBehaviour
             lp.text = "弱攻撃 +" + shop_lightPower;
 
         }
+        //値段
+        foreach (var hp in hp_priceText)
+        {
+            hp.text = "値段：" + hp_price;
+
+        }
+        foreach (var sp in stp_priceText)
+        {
+            sp.text = "値段：" + stp_price;
+
+        }
+        foreach (var lp in lgp_priceText)
+        {
+            lp.text = "値段：" + lgp_price;
+
+        }
+
 
     }
 

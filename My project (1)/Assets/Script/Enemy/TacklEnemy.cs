@@ -8,7 +8,8 @@ public class TacklEnemy : MonoBehaviour
     private bool ap = false;          //攻撃準備
 
     public const int hp = 50;
-    public const int tackl_money = 30;
+    public const int tackl_money = 100;
+    public GameObject money;
 
     public bool  attack    = false;   //攻撃のアニメーションとオブジェクト用]
     public bool apeffect   = false;   //攻撃前のエフェクト
@@ -81,7 +82,9 @@ public class TacklEnemy : MonoBehaviour
         {
             Encounter = false;
             attack = false;
-            StatusButton.money += tackl_money;
+            enemy.money = tackl_money;
+            money.SetActive(true);
+
         }
 
 

@@ -15,6 +15,7 @@ TagManager:
   - Startpos
   - MovingBridge
   - Wall
+  - PlayerHP
   layers:
   - Default
   - TransparentFX
