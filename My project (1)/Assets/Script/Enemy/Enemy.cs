@@ -1,9 +1,5 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static Unity.Collections.AllocatorManager;
-using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 public class Enemy : MonoBehaviour
 {
@@ -25,9 +21,7 @@ public class Enemy : MonoBehaviour
     public GameObject EnemyObj;
     public Player player;
     Effect ef = new Effect(); //ダメージを受けた時に点滅する
-    //public HPBar hpb;
-    //public WarpSwitch[] wp;
-    bool f;
+    bool f; //デバッグ用
 
     enum EStatus //初期ステータス
     {
@@ -35,16 +29,9 @@ public class Enemy : MonoBehaviour
         Power = 10,
     }
 
-    IEnumerator DethCoroutine()
-    {
-        yield return new WaitForSeconds(2); //　１０秒まつ
-        Destroy(gameObject);
-    }
-
     void Start()
     {
         m_StartPos = transform.position; //最初の位置
-        //enemyhp = (int)EStatus.HP; //ステータスの初期化
         Direction = Vector3.zero; //回転の初期化
         transform.eulerAngles = Direction;
         enemyDeth = false;
@@ -78,24 +65,10 @@ public class Enemy : MonoBehaviour
             enemyDeth = true;
             DethEffect.SetActive(true);
             EnemyObj.SetActive(false);
-            StartCoroutine(DethCoroutine());
+            Destroy(gameObject, 2f);
         }
-        //ワープ
-        //foreach (var ws in wp)
-        //{
-        //    if(ws.WarpFlag == true)
-        //    {
-        //        transform.eulerAngles = Vector3.zero;
-        //        transform.position = new Vector3(m_StartPos.x, posy, m_StartPos.z);
-        //    }
-        //}
-        //if (player.abyssflag == true)
-        //{
-        //    Debug.Log("敵の位置を初期化した");
-        //    transform.eulerAngles = Vector3.zero;
-        //    transform.position = new Vector3(m_StartPos.x, posy, m_StartPos.z);
-        //}
-        if(Player.pos_reset_flag == true)
+        //プレイヤーが奈落かワープをした時
+        if (Player.pos_reset_flag == true)
         {
             Debug.Log("敵の位置を初期化した");
             transform.eulerAngles = Vector3.zero;

@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections;
+using JetBrains.Rider.Unity.Editor;
 public class DamageCalculator : MonoBehaviour
 {
     //プレイヤーのスピード
@@ -73,6 +74,10 @@ public class EnemyAttack
     //突進攻撃用
     const float ta_Cooldown = 2500f;
     const float ta_Cooldown2 = 400f;
+    //弾用
+    Rigidbody rb;
+    GameObject bullet;
+    GameObject muzzle;
 
     private float second = 0;
     public int Count; //攻撃までのカウントダウン
@@ -90,11 +95,11 @@ public class EnemyAttack
                 second = 0;
                 Count++;
             }
-            if(second == 2000)
+            if(second == 2000)//攻撃前にエフェクトを出す
             {
                 apeffect = true;
             }
-            if (Count == 1)
+            if (Count == 1) //攻撃
             {
                 attack = true;
                 apeffect = false;
@@ -118,11 +123,11 @@ public class EnemyAttack
             count += 1;
             second = 0;
         }
-        if (second >= 500)
+        if (second >= 500)//攻撃前にエフェクトを出す
         {
             apeffect = true;
         }
-        if (count == 1)
+        if (count == 1)//攻撃
         {
             attack = true;
             apeffect = false;
@@ -141,6 +146,38 @@ public class EnemyAttack
         return (ap, Encounter, attack, apeffect, count, pos);
 
     }
+
+    public (bool, bool, bool, bool, int) BulletAttack(bool ap, bool Encounter)
+    {
+        if (Encounter)
+        {
+            second++;
+            if (second == th_Cooldown) //時間が来たらカウントを進める
+            {
+                second = 0;
+                Count++;
+            }
+            if (second == 2000) //攻撃前にエフェクトを出す
+            {
+                apeffect = true;
+            }
+            if (Count == 1)//攻撃
+            {
+                attack = true;
+                apeffect = false;
+                second = 0;
+            }
+            if (Count != 0 && second >= 60f)
+            {
+                Count = 0;
+                attack = false;
+                ap = false;
+                Encounter = false;
+            }
+        }
+        return (ap, Encounter, attack, apeffect, Count);
+    }
+
 
     public void ResetAttack() //secondを初期化
     {
