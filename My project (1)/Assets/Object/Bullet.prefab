@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 119165096734251525}
   - component: {fileID: 7431808999420053190}
   - component: {fileID: -452324694368931183}
+  - component: {fileID: -6232270451456287041}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: ThrustAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,3 +137,15 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-6232270451456287041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115176460424383841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b97ad496bca79d2458c4bbb38d636dda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

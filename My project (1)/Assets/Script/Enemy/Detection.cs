@@ -17,6 +17,10 @@ public class Detection : MonoBehaviour
             {
                 enemy.wall_flag = true;
             }
+            if (other.CompareTag("Enemy"))
+            {
+                enemy.wall_flag = true;
+            }
         }
     }
     private void OnTriggerExit(Collider other)
@@ -30,5 +34,10 @@ public class Detection : MonoBehaviour
         {
             enemy.wall_flag = false;
         }
+        if (other.CompareTag("Enemy"))
+        {
+            enemy.wall_flag = false;
+        }
+
     }
 }

@@ -17,8 +17,8 @@ public class BulletEnemy : MonoBehaviour
     public const int power = 10;
     public float bulletSpeed;
 
-    public const int hp = 30;
-    public const int thrust_money = 30;
+    public const int hp = 10;
+    public const int bullet_money = 50;
     public GameObject money;
 
     //クールタイム
@@ -45,6 +45,7 @@ public class BulletEnemy : MonoBehaviour
         {
             Encounter = true;
             Debug.Log("プレイヤーが近くにいる");
+
         }
     }
     private void OnTriggerExit(Collider other)
@@ -89,7 +90,7 @@ public class BulletEnemy : MonoBehaviour
         {
             Encounter = false;
             attack = false;
-            enemy.money = thrust_money;
+            enemy.money = bullet_money;
             money.SetActive(true);
         }
     }

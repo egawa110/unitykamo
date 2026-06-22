@@ -8,6 +8,7 @@ public class EnemyAnim : MonoBehaviour
 
     public ThrustEnemy[] thrust_enemy;
     public TacklEnemy[] tackl_enemy;
+    public BulletEnemy[] bullet_enemy;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -38,6 +39,18 @@ public class EnemyAnim : MonoBehaviour
             else
             {
                 anim.SetBool("TacklAttack", false);
+            }
+        }
+        //弾発射後アニメーション
+        foreach (var en_bu in bullet_enemy)
+        {
+            if (en_bu.attack)
+            {
+                anim.SetBool("BulletAttack", true);
+            }
+            else
+            {
+                anim.SetBool("BulletAttack", false);
             }
         }
 
