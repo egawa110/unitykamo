@@ -9,6 +9,7 @@ public class EnemyAnim : MonoBehaviour
     public ThrustEnemy[] thrust_enemy;
     public TacklEnemy[] tackl_enemy;
     public BulletEnemy[] bullet_enemy;
+    public BossEnemy[] boss_enemy;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -52,6 +53,29 @@ public class EnemyAnim : MonoBehaviour
             {
                 anim.SetBool("BulletAttack", false);
             }
+        }
+        //ボスアニメーション
+        foreach (var boss in boss_enemy)
+        {
+            //突き攻撃
+            if (boss.thrust_attack)
+            {
+                anim.SetBool("thrust_attack", true);
+            }
+            else
+            {
+                anim.SetBool("thrust_attack", false);
+            }
+            //周囲攻撃
+            if (boss.around_anim)
+            {
+                anim.SetBool("around_attack", true);
+            }
+            else
+            {
+                anim.SetBool("around_attack", false);
+            }
+
         }
 
 

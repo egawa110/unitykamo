@@ -66,7 +66,7 @@ public class TacklEnemy : MonoBehaviour
             {
                 (ap, Encounter, attack, apeffect, Count, transform.position) = EAttack.TacklAttack(ap, Encounter, Count, transform.position, transform.forward, speed);
             }
-            if (ap && player_flag || wall_flag) //è·äQï®Ç…ìñÇΩÇÈÇ∆é~Ç‹ÇÈ
+            if (ap && player_flag || wall_flag) //è·äQï®Ç…ìñÇΩÇÈÇ∆é~ÇﬂÇÈ
             {
                 Encounter = false;
                 attack = false;

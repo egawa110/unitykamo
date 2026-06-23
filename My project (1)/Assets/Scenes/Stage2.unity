@@ -16199,7 +16199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b36718f8c32524f8fc5223d9eec634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 110837470}
+  tackl_enemy:
+  - {fileID: 110837470}
 --- !u!65 &788128974
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20257,6 +20258,7 @@ MonoBehaviour:
   tackl_enemy:
   - {fileID: 110837470}
   bullet_enemy: []
+  boss_enemy: []
 --- !u!1 &1197921768
 GameObject:
   m_ObjectHideFlags: 0

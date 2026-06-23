@@ -90,12 +90,12 @@ public class EnemyAttack
         if (Encounter)
         {
             second++;
-            if (second == th_Cooldown) //時間が来たらカウントを進める
+            if (second >= th_Cooldown) //時間が来たらカウントを進める
             {
                 second = 0;
                 Count++;
             }
-            if(second == 2000)//攻撃前にエフェクトを出す
+            if(second >= 2000)//攻撃前にエフェクトを出す
             {
                 apeffect = true;
             }
@@ -104,7 +104,7 @@ public class EnemyAttack
                 attack = true;
                 apeffect = false;
             }
-            if (Count != 0 && second == th_Cooldown2)
+            if (Count != 0 && second >= th_Cooldown2)
             {
                 Count = 0;
                 attack = false;
@@ -118,7 +118,7 @@ public class EnemyAttack
     public (bool, bool,bool, bool, int, Vector3) TacklAttack(bool ap, bool Encounter, int count, Vector3 pos, Vector3 forward, float speed)
     {
         second++;
-        if(second == 1000)
+        if(second >= 1000)
         {
             count += 1;
             second = 0;
@@ -152,12 +152,12 @@ public class EnemyAttack
         if (Encounter)
         {
             second++;
-            if (second == th_Cooldown) //時間が来たらカウントを進める
+            if (second >= th_Cooldown) //時間が来たらカウントを進める
             {
                 second = 0;
                 Count++;
             }
-            if (second == 2000) //攻撃前にエフェクトを出す
+            if (second >= 2000) //攻撃前にエフェクトを出す
             {
                 apeffect = true;
             }
@@ -178,6 +178,62 @@ public class EnemyAttack
         return (ap, Encounter, attack, apeffect, Count);
     }
 
+    //ボス用
+    bool thrust_attack = false;
+    bool around_attack = false;
+    bool around_anim = false;
+    public (bool, bool, bool, bool, bool, bool, int) Boss_Attack(bool ap, bool Encounter)
+    {
+        if (Encounter)
+        {
+            second++;
+            if (second == th_Cooldown) //時間が来たらカウントを進める
+            {
+                second = 0;
+                Count++;
+            }
+            if (Count == 0 && second >= 2000)//攻撃前にエフェクトを出す
+            {
+                apeffect = true;
+            }
+            if (Count == 1) //突き攻撃
+            {
+                thrust_attack = true;
+                apeffect = false;
+                ap = true;
+            }
+            if (Count != 0 && second >= th_Cooldown2) //突き攻撃終了
+            {
+                thrust_attack = false;
+                ap = false;
+            }
+            if (Count == 2 && second == 2000)//攻撃前にエフェクトを出す
+            {
+                apeffect = true;
+            }
+            if (Count == 3) //周囲攻撃アニメーション
+            {
+                around_anim = true;
+                apeffect = false;
+                ap = true;
+            }
+            if(Count == 3 && second == 400) //アニメーションの後に攻撃
+            {
+                around_attack = true;
+            }
+            if (Count == 3 && second == 2000)//攻撃終了
+            {
+                Count = 0;
+                thrust_attack = false;
+                around_attack = false;
+                around_anim = false;
+                ap = false;
+                Encounter = false;
+
+            }
+        }
+        return (ap, Encounter, thrust_attack, around_attack, around_anim, apeffect, Count);
+    }
 
     public void ResetAttack() //secondを初期化
     {

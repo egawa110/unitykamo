@@ -5820,6 +5820,7 @@ MonoBehaviour:
   tackl_enemy:
   - {fileID: 1080159362}
   bullet_enemy: []
+  boss_enemy: []
 --- !u!95 &40146467
 Animator:
   serializedVersion: 7
@@ -9513,6 +9514,7 @@ MonoBehaviour:
   tackl_enemy: []
   bullet_enemy:
   - {fileID: 1961795983}
+  boss_enemy: []
 --- !u!1 &391966842
 GameObject:
   m_ObjectHideFlags: 0
@@ -20183,7 +20185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b36718f8c32524f8fc5223d9eec634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1080159362}
+  tackl_enemy:
+  - {fileID: 1080159362}
 --- !u!65 &497472980
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20580,6 +20583,7 @@ MonoBehaviour:
   tackl_enemy: []
   bullet_enemy:
   - {fileID: 534659058}
+  boss_enemy: []
 --- !u!1 &522782796
 GameObject:
   m_ObjectHideFlags: 0
@@ -31448,6 +31452,7 @@ MonoBehaviour:
   tackl_enemy: []
   bullet_enemy:
   - {fileID: 534659058}
+  boss_enemy: []
 --- !u!1001 &1105191677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38225,6 +38230,7 @@ MonoBehaviour:
   tackl_enemy: []
   bullet_enemy:
   - {fileID: 784178843}
+  boss_enemy: []
 --- !u!1 &1310886978
 GameObject:
   m_ObjectHideFlags: 0
@@ -43952,6 +43958,7 @@ MonoBehaviour:
   tackl_enemy:
   - {fileID: 1080159362}
   bullet_enemy: []
+  boss_enemy: []
 --- !u!1 &1366546355
 GameObject:
   m_ObjectHideFlags: 0
@@ -46458,6 +46465,7 @@ MonoBehaviour:
   tackl_enemy: []
   bullet_enemy:
   - {fileID: 784178843}
+  boss_enemy: []
 --- !u!1 &1545246407
 GameObject:
   m_ObjectHideFlags: 0
@@ -65351,6 +65359,7 @@ MonoBehaviour:
   tackl_enemy: []
   bullet_enemy:
   - {fileID: 1961795983}
+  boss_enemy: []
 --- !u!1 &1941005324
 GameObject:
   m_ObjectHideFlags: 0

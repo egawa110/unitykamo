@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         m_StartPos = transform.position; //Å‰‚ÌˆÊ’u
-        Direction = Vector3.zero; //‰ñ“]‚Ì‰Šú‰»
+        Direction = new Vector3(0,180,0); //‰ñ“]‚Ì‰Šú‰»
         transform.eulerAngles = Direction;
         enemyDeth = false;
         f = false;
