@@ -1,7 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections;
-using JetBrains.Rider.Unity.Editor;
 public class DamageCalculator : MonoBehaviour
 {
     //プレイヤーのスピード

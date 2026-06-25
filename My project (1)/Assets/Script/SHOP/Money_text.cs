@@ -4,6 +4,8 @@ using UnityEngine.UI;
 public class Money_text : MonoBehaviour
 {
     public Text MoneyText;
+    public static int money;
+
     void Start()
     {
         
@@ -18,10 +20,10 @@ public class Money_text : MonoBehaviour
         var mKey = current.mKey; //WƒL[‚Ì“ü—Íó‘Ôæ“¾
         if (mKey.isPressed)
         {
-            StatusButton.money++;
+            money += 100000;
         }
         //Š‹à
-        MoneyText.text = "G:" + StatusButton.money;
+        MoneyText.text = "G:" + money;
 
     }
 }

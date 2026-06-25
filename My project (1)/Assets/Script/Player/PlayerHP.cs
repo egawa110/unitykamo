@@ -12,7 +12,7 @@ public class PlayerHP : MonoBehaviour
         {
             player.hp -= ThrustEnemy.power; //敵のダメージを受けた
             Debug.Log("１０ダメージ受けた");
-            hpb.HPbar(player.hp);
+            //hpb.HPbar(player.hp);
 
         }
         if (other.CompareTag("Abyss"))
@@ -22,10 +22,16 @@ public class PlayerHP : MonoBehaviour
             {
                 player.hp -= abyssdamage; //奈落ダメージ
                 Debug.Log("１０ダメージ受けた");
-                hpb.HPbar(player.hp);//HPバーにダメージを反映
+                //hpb.HPbar(player.hp);//HPバーにダメージを反映
 
             }
         }
+
+    }
+
+    private void Update()
+    {
+        hpb.HPbar(player.hp);//HPバーにダメージを反映
 
     }
 }

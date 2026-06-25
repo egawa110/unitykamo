@@ -22,9 +22,14 @@ public class Player : MonoBehaviour
     private bool invincible;
     //ステータス------------
     public int hp;   //HP
+    public int maxhp;
     public int strongPower; //強攻撃
     public int lightPower;  //弱攻撃
     public int defense;     //防御
+    bool heal20; //回復フラグ
+    bool heal50; //回復フラグ
+    bool heal100; //回復フラグ
+
     //-----------------------
     public int coin;        //コイン
     public bool PlayerDeth; //死亡フラグ
@@ -46,7 +51,7 @@ public class Player : MonoBehaviour
     void Awake() //Startより早く呼ばれる
     {
         hp = (int)m_PStatus.HP + StatusButton.shop_hp;                               //hp
-
+        maxhp = hp;
     }
     void Start()
     {
@@ -110,6 +115,44 @@ public class Player : MonoBehaviour
         (isvisible,invincible) = ef.DamageEffect(isvisible, hp);
         PlayerObj.SetActive(isvisible);
         DamageEffect.SetActive(!isvisible);
+
+        //回復
+        var current = Keyboard.current;  //現在のキーボード情報
+        if (current == null) return;     //キーボード接続チェック
+
+        var digit1Key = current.digit1Key; //1キーの入力状態取得
+        var digit2Key = current.digit2Key; //2キーの入力状態取得
+        var digit3Key = current.digit3Key; //3キーの入力状態取得
+        //20回復
+        if (digit1Key.isPressed && !heal20 
+            && HealButton.potion1 > 0)
+        {
+            if(maxhp > hp)
+                hp += 20;
+            HealButton.potion1 -= 1;
+            heal20 = true;
+        }
+        //50回復
+        if (digit2Key.isPressed && !heal50
+            && HealButton.potion2 > 0)
+        {
+            if (maxhp > hp)
+                hp += 50;
+            HealButton.potion2 -= 1;
+            heal50 = true;
+        }
+        //100回復
+        if (digit3Key.isPressed && !heal100
+            && HealButton.potion3 > 0)
+        {
+            if (maxhp > hp)
+                hp += 100;
+            HealButton.potion3 -= 1;
+            heal100 = true;
+        }
+        if (!digit1Key.isPressed) heal20 = false;
+        if (!digit2Key.isPressed) heal50 = false;
+        if (!digit3Key.isPressed) heal100 = false;
 
         //HPが0になると消える
         if (hp <= 0)

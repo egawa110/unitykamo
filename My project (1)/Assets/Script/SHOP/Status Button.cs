@@ -6,7 +6,8 @@ public class StatusButton : MonoBehaviour
     public static int shop_hp;
     public static int shop_strongPower;
     public static int shop_lightPower;
-    public static int money;
+    const int max_status = 1000;
+
     public static int hp_price = 100;
     public static int stp_price = 100;
     public static int lgp_price = 100;
@@ -19,14 +20,13 @@ public class StatusButton : MonoBehaviour
     public Text[] stp_priceText;
     public Text[] lgp_priceText;
 
-
-
     public void Status_hp()
     {
-        if(money >= hp_price)
+        if(Money_text.money >= hp_price &&
+            shop_hp < max_status)
         {
             shop_hp += 10;
-            money -= hp_price;
+            Money_text.money -= hp_price;
             hp_price += 50;
 
         }
@@ -34,10 +34,11 @@ public class StatusButton : MonoBehaviour
 
     public void Status_strongpower()
     {
-        if (money >= stp_price)
+        if (Money_text.money >= stp_price &&
+            shop_strongPower < max_status)
         {
             shop_strongPower += 10;
-            money -= stp_price;
+            Money_text.money -= stp_price;
             stp_price += 50;
 
         }
@@ -47,10 +48,11 @@ public class StatusButton : MonoBehaviour
 
     public void Status_lightpower()
     {
-        if (money >= lgp_price)
+        if (Money_text.money >= lgp_price &&
+            shop_lightPower < max_status)
         {
             shop_lightPower += 10;
-            money -= lgp_price;
+            Money_text.money -= lgp_price;
             lgp_price += 50;
 
         }

@@ -10,8 +10,13 @@ public class GameManager : MonoBehaviour
     //タイマーとかHPとか
     public GameObject TimePanel;
     public Text TimeText;
-    public Text Money;
     private float TimeCount;
+    //所持金とアイテム
+    public Text Money_Text;
+    public Text potion1_Text;
+    public Text potion2_Text;
+    public Text potion3_Text;
+
     //ゴール時
     public GameObject GoalPanel;
     public Text GoalTime;
@@ -39,7 +44,12 @@ public class GameManager : MonoBehaviour
             TimeCount += Time.deltaTime;
             TimeText.text = "Time : " + TimeCount. ToString ("F1");
             //所持金
-            Money.text = "G:" + StatusButton.money;
+            Money_Text.text = "G:" + Money_text.money;
+            //回復薬
+            potion1_Text.text = "×" + HealButton.potion1;
+            potion2_Text.text = "×" + HealButton.potion2;
+            potion3_Text.text = "×" + HealButton.potion3;
+
         }
 
         //ポーズ画面

@@ -43,13 +43,13 @@ public class Enemy : MonoBehaviour
         var current = Keyboard.current;  //現在のキーボード情報
         if (current == null) return;     //キーボード接続チェック
 
-        var fKey = current.fKey; //Wキーの入力状態取得
-        if (fKey.isPressed && !f)
+        var vKey = current.vKey; //Wキーの入力状態取得
+        if (vKey.isPressed && !f)
         {
             f = true;
             enemyhp -= 10;
         }
-        else if(!fKey.isPressed)
+        else if(!vKey.isPressed)
         {
             f = false;
 

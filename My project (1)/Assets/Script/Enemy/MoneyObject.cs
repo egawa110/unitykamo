@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class MoneyObject : MonoBehaviour
 {
@@ -20,7 +19,7 @@ public class MoneyObject : MonoBehaviour
     {
         if (other.CompareTag("PlayerHP"))
         {
-            StatusButton.money += money;
+            Money_text.money += money;
             Destroy(gameObject);
         }
     }

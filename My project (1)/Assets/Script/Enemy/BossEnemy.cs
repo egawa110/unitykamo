@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 public class BossEnemy : MonoBehaviour
 {
     //攻撃用
@@ -18,6 +18,9 @@ public class BossEnemy : MonoBehaviour
     public const int hp = 1000;
     public const int boss_money = 1000;
     public GameObject money;
+    public Slider hpSlider; //UIスライダー
+    int maxhp;
+
     //public const int thrust_power = 10; 
 
     //クールタイム
@@ -35,6 +38,10 @@ public class BossEnemy : MonoBehaviour
         target = GameObject.Find("Player"); //プレイヤーオブジェクトを取得
         thrust_attack = false;
         enemy.enemyhp = hp;
+        //HPバー
+        maxhp = hp;
+        hpSlider.maxValue = maxhp;
+        hpSlider.value = maxhp;
 
     }
 
@@ -77,6 +84,9 @@ public class BossEnemy : MonoBehaviour
             distance = Vector3.Distance(player.transform.position, transform.position);
             //Debug.Log(distance);
         }
+
+        hpSlider.value = enemy.enemyhp; //スライダーに今のHPを反映
+
         //死亡
         if (enemy.enemyDeth)
         {
@@ -84,6 +94,7 @@ public class BossEnemy : MonoBehaviour
             thrust_attack = false;
             enemy.money = boss_money;
             money.SetActive(true);
+            Destroy(hpSlider.gameObject);
         }
     }
 }
